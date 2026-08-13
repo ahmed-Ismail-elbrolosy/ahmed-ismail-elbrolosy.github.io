@@ -1,0 +1,44 @@
+---
+import type { Project } from '../utils/projects';
+import BaseLayout from './BaseLayout.astro';
+import ProjectHeader from '../components/ProjectHeader.astro';
+import ProjectSection from '../components/ProjectSection.astro';
+import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import ProjectNavigation from '../components/ProjectNavigation.astro';
+import ProjectSubnav from '../components/ProjectSubnav.astro';
+
+interface Props {
+  project: Project;
+  previous?: Project;
+  next?: Project;
+}
+
+const { project, previous, next } = Astro.props;
+---
+
+<BaseLayout title={project.data.title} description={project.data.description}>
+  <article class="project-page">
+    <ProjectSubnav currentProject={project} />
+    <ProjectHeader project={project} />
+    <div class="project-hero shell">
+      <MediaPlaceholder label={project.data.heroMedia} ratio="wide" index={`P.${project.data.order.toString().padStart(2, '0')}`} />
+    </div>
+    <div class="project-sections shell">
+      {project.data.sections.map((section, index) => (
+        <ProjectSection number={index + 1} {...section} />
+      ))}
+    </div>
+    <section class="repository-block shell" aria-labelledby="repository-title">
+      <div>
+        <p class="mono-label">Project source</p>
+        <h2 id="repository-title">Repository</h2>
+      </div>
+      {project.data.repository ? (
+        <a class="button-link" href={project.data.repository}>View repository ↗</a>
+      ) : (
+        <span class="repository-pending">Repository link pending</span>
+      )}
+    </section>
+    <ProjectNavigation previous={previous} next={next} />
+  </article>
+</BaseLayout>

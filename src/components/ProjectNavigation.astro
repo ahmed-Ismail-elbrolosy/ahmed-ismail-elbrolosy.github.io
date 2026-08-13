@@ -1,0 +1,22 @@
+---
+import type { Project } from '../utils/projects';
+import { sitePath } from '../utils/paths';
+
+interface Props { previous?: Project; next?: Project }
+const { previous, next } = Astro.props;
+---
+
+<nav class="project-navigation shell" aria-label="Project pagination">
+  {previous ? (
+    <a href={sitePath(`projects/${previous.id}`)} rel="prev">
+      <span>Previous Project</span>
+      <strong>← {previous.data.navTitle}</strong>
+    </a>
+  ) : <span class="empty-direction" aria-hidden="true"></span>}
+  {next ? (
+    <a href={sitePath(`projects/${next.id}`)} rel="next">
+      <span>Next Project</span>
+      <strong>{next.data.navTitle} →</strong>
+    </a>
+  ) : <span class="empty-direction" aria-hidden="true"></span>}
+</nav>

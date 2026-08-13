@@ -1,0 +1,5 @@
+{ "name": "AgriBot", "desc": "Autonomous Agricultural Robot", "date": "Mar 2025", "status": "done", "tags": ["robotics", "ROS2"] },
+  { "name": "AGV System", "desc": "Automated Guided Vehicle", "date": "Jan 2025", "status": "done", "tags": ["robotics", "embedded"] },
+  { "name": "GAN Gogh", "desc": "Neural Style Transfer", "date": "Nov 2024", "status": "done", "tags": ["deep-learning"] },
+  { "name": "Mecanum Robot", "desc": "Omni-directional robot", "date": "May 2024", "status": "done", "tags": ["robotics", "embedded"] },
+  { "name": "Magnetic Box", "desc": "Mechanical design project", "date": "Feb 2026", "status": "done", "tags": ["mechanical", "CAD"] },

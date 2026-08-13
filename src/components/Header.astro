@@ -1,0 +1,15 @@
+---
+import Navigation from './Navigation.astro';
+import { sitePath } from '../utils/paths';
+---
+
+<header class="site-header">
+  <div class="identity-bar shell">
+    <a class="site-mark" href={sitePath()} aria-label="Ahmed Elbrolosy, home">
+      <span>AE</span>
+      <span class="site-mark-label">Engineering Portfolio</span>
+    </a>
+    <p class="header-discipline">Robotics · Control · Embedded Systems</p>
+  </div>
+  <Navigation />
+</header>

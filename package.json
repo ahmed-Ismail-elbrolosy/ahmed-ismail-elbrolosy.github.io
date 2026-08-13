@@ -1,0 +1,19 @@
+{
+  "name": "ahmed-elbrolosy-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^24.10.1",
+    "astro": "^7.2.1",
+    "typescript": "^5.9.3"
+  }
+}

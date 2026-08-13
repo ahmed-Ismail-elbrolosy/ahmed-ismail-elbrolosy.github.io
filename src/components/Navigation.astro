@@ -1,0 +1,44 @@
+---
+import { homeSectionPath } from '../utils/paths';
+
+const currentPath = Astro.url.pathname;
+const links = [
+  ['Home', 'home'],
+  ['Projects', 'projects'],
+  ['Experience', 'experience'],
+  ['Education', 'education'],
+  ['Skills', 'skills'],
+  ['Contact', 'contact'],
+] as const;
+---
+
+<nav class="site-navigation" aria-label="Primary navigation">
+  <div class="nav-scroll" tabindex="0" aria-label="Scrollable site navigation">
+    {links.map(([label, section]) => (
+      <a class:list={['nav-link', { 'nav-home': section === 'home' }]} href={homeSectionPath(section, currentPath)} data-section-link={section}>
+        {label}
+      </a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  const sectionLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-section-link]')];
+  const homeSections = sectionLinks
+    .map((link) => document.getElementById(link.dataset.sectionLink ?? ''))
+    .filter((section): section is HTMLElement => section !== null);
+
+  if (homeSections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const current = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!current) return;
+
+      sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
+      document.querySelector(`[data-section-link="${current.target.id}"]`)?.setAttribute('aria-current', 'location');
+    }, { rootMargin: '-25% 0px -60% 0px', threshold: [0, 0.2, 0.5] });
+
+    homeSections.forEach((section) => observer.observe(section));
+  }
+</script>

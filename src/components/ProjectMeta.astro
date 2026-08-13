@@ -1,0 +1,25 @@
+---
+interface Props {
+  year: string;
+  type: string;
+  role: string;
+  stack: string[];
+}
+
+const { year, type, role, stack } = Astro.props;
+const items = [
+  ['Year', year],
+  ['Type', type],
+  ['Role', role],
+  ['Platform / Stack', stack.length ? stack.join(' · ') : 'To be documented'],
+];
+---
+
+<dl class="project-meta">
+  {items.map(([term, value]) => (
+    <div>
+      <dt>{term}</dt>
+      <dd>{value}</dd>
+    </div>
+  ))}
+</dl>

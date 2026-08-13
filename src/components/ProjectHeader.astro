@@ -1,0 +1,25 @@
+---
+import type { Project } from '../utils/projects';
+import { projectNumber } from '../utils/projects';
+import ProjectMeta from './ProjectMeta.astro';
+
+interface Props { project: Project }
+const { project } = Astro.props;
+---
+
+<header class="project-header shell">
+  <div class="project-eyebrow">
+    <span>Project {projectNumber(project.data.order)}</span>
+    <span>{project.data.category}</span>
+  </div>
+  <div class="project-title-grid">
+    <h1>{project.data.title}</h1>
+    <p class="project-summary">{project.data.description}</p>
+  </div>
+  <ProjectMeta
+    year={project.data.year}
+    type={project.data.type}
+    role={project.data.role}
+    stack={project.data.stack}
+  />
+</header>

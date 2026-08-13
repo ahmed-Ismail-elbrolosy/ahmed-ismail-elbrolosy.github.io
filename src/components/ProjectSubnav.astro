@@ -1,0 +1,27 @@
+---
+import { getProjects, type Project } from '../utils/projects';
+import { sitePath } from '../utils/paths';
+
+interface Props {
+  currentProject: Project;
+}
+
+const { currentProject } = Astro.props;
+const projects = await getProjects();
+---
+
+<nav class="project-subnav" aria-label="Project navigation">
+  <div class="project-subnav-scroll shell" tabindex="0" aria-label="Scrollable project navigation">
+    <a class="project-subnav-link" href={`${sitePath()}#projects`}>
+      Project Index
+    </a>
+    {projects.map((project) => {
+      const href = sitePath(`projects/${project.id}`);
+      return (
+        <a class="project-subnav-link" href={href} aria-current={currentProject.id === project.id ? 'page' : undefined}>
+          {project.data.navTitle}
+        </a>
+      );
+    })}
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+---
+import type { Project } from '../utils/projects';
+import { projectNumber } from '../utils/projects';
+import { sitePath } from '../utils/paths';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props { project: Project; featured?: boolean }
+const { project, featured = false } = Astro.props;
+const title = project.data.previewTitle ?? project.data.title;
+---
+
+<article class:list={['project-preview', { featured }]}>
+  <a class="preview-media-link" href={sitePath(`projects/${project.id}`)} aria-label={`View ${title}`}>
+    <MediaPlaceholder label={project.data.heroMedia} ratio={featured ? 'wide' : 'standard'} index={projectNumber(project.data.order)} />
+  </a>
+  <div class="preview-details">
+    <div class="preview-index">{projectNumber(project.data.order)}</div>
+    <div>
+      <p class="mono-label">{project.data.category}</p>
+      <h3><a href={sitePath(`projects/${project.id}`)}>{title}</a></h3>
+      <p>{project.data.description}</p>
+      <p class="preview-stack">{project.data.stack.length ? project.data.stack.join(' · ') : 'Technology details pending'}</p>
+      <a class="text-link" href={sitePath(`projects/${project.id}`)}>View Project <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</article>

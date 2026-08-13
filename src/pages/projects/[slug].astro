@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths } from 'astro';
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { getProjects, type Project } from '../../utils/projects';
+
+export const getStaticPaths = (async () => {
+  const projects = await getProjects();
+  return projects.map((project, index) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      previous: projects[index - 1],
+      next: projects[index + 1],
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props { project: Project; previous?: Project; next?: Project }
+const { project, previous, next } = Astro.props;
+---
+
+<ProjectLayout project={project} previous={previous} next={next} />

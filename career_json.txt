@@ -1,0 +1,323 @@
+{
+  "personal": {
+    "name": "Ahmed Ismail Elbrolosy",
+    "location": "Alexandria, Egypt",
+    "phone": "+20 155 200 5007",
+    "email": "ahmedismailahmed2004@gmail.com",
+    "linkedin": "linkedin.com/in/ahmed-ismail-elbrolosy",
+    "github": "github.com/ahmed-Ismail-elbrolosy"
+  },
+  "education": [
+    {
+      "institution": "Egypt Japan University of Science and Technology (EJUST)",
+      "location": "Burj El-Arab, Alexandria",
+      "degree": "Bachelor of Engineering in Mechatronics",
+      "gpa": "3.54/4.0",
+      "start": "Oct. 2022",
+      "end": "Expected May 2027",
+      "year": "4th year",
+      "coursework": [
+        "Vibration Analysis", "Mechanical Design", "Electronic Circuits",
+        "Manufacturing", "Data Analysis", "Algorithms",
+        "Artificial Intelligence", "Operating Systems"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "rov-team",
+      "org": "ROV Team",
+      "location": "EJUST, Alexandria",
+      "role": "Software Team Member (VSLAM & Simulation Specialist)",
+      "start": "Oct. 2025",
+      "end": "Present",
+      "status": "ongoing",
+      "type": "research_team",
+      "bullets": [
+        "Engineered a VSLAM pipeline using RTAB-Map to generate closed-loop 3D point clouds for underwater object scanning, enabling precise localization for autonomous submersibles in texture-poor environments.",
+        "Converted complex mechanical assemblies to URDF models, enabling high-fidelity simulations in ROS2/Gazebo environments.",
+        "Resolved integration challenges between ROS2 autonomy layers and low-level embedded hardware, ensuring reliable inter-layer communication for autonomous subsea operations."
+      ],
+      "tags": ["ROS2", "SLAM", "VSLAM", "RTAB-Map", "Gazebo", "robotics", "embedded"]
+    },
+    {
+      "id": "freelance-instructor",
+      "org": "Self-Employed",
+      "location": "Online",
+      "role": "Freelance Academic Instructor",
+      "start": "2024",
+      "end": "Present",
+      "status": "ongoing",
+      "type": "freelance",
+      "bullets": [
+        "Deliver one-on-one and small-group online tutoring sessions for college-level Physics, Digital Logic, Mathematics, and Engineering Mechanics to university students.",
+        "Adapt explanations and pacing to individual learner needs, translating complex engineering concepts into clear, structured lessons."
+      ],
+      "tags": ["teaching", "online", "freelance", "physics", "digital-logic", "math", "mechanics", "college"],
+      "notes": "Subjects: Physics, Digital Logic, Mathematics, Engineering Mechanics. Audience: college students. Format: online, one-on-one and small groups."
+    },
+    {
+      "id": "samsung-sic",
+      "org": "Samsung Innovation Campus (SIC)",
+      "location": "Remote",
+      "role": "AI/ML Intern",
+      "start": "Sep. 2024",
+      "end": "Nov. 2024",
+      "status": "done",
+      "type": "internship",
+      "bullets": [
+        "Architected end-to-end ML pipelines utilizing AlexNet and custom CNNs for image classification and feature extraction tasks.",
+        "Deployed real-time inference models using Flask and Streamlit, integrating RESTful APIs for scalable model serving.",
+        "Optimized model performance through rigorous feature engineering and data preprocessing on complex fashion datasets."
+      ],
+      "tags": ["PyTorch", "CNN", "AlexNet", "Flask", "Streamlit", "ML", "AI"]
+    },
+    {
+      "id": "tech-maker",
+      "org": "Tech Maker (ITIDA EME)",
+      "location": "Onsite",
+      "role": "Mechatronics & Embedded Systems Intern",
+      "start": "Sep. 2024",
+      "end": "Nov. 2024",
+      "status": "done",
+      "type": "internship",
+      "bullets": [
+        "Designed and fabricated multi-layer PCBs utilizing Altium Designer, managing the full lifecycle from schematic capture to final assembly and hardware testing.",
+        "Developed a Battery Management System (BMS) prototype, integrating Arduino/ESP32 microcontrollers with MQTT and HTTP protocols for real-time monitoring.",
+        "Engineered IoT solutions involving sensor fusion and diverse communication protocols (I2C, SPI, UART, Bluetooth) for industrial prototyping."
+      ],
+      "tags": ["Altium Designer", "PCB", "ESP32", "Arduino", "MQTT", "IoT", "BMS", "embedded"]
+    },
+    {
+      "id": "alexandria-development",
+      "org": "Alexandria Development Authority",
+      "location": "Alexandria, Egypt",
+      "role": "Mechanical Engineer — Firefighting & HVAC",
+      "start": "Jul. 2025",
+      "end": "Aug. 2025",
+      "status": "done",
+      "type": "internship",
+      "duration": "1 month",
+      "bullets": [
+        "Supported design and site review of firefighting suppression systems and HVAC installations across active development projects, applying fluid mechanics and thermodynamics principles to real infrastructure.",
+        "Reviewed mechanical drawings and coordinated with site engineers to verify system compliance with Egyptian construction standards and safety codes."
+      ],
+      "tags": ["mechanical", "HVAC", "firefighting", "construction", "fluid-mechanics", "site-engineering", "MEP"]
+    },
+    {
+      "id": "depi",
+      "org": "Digital Egypt Pioneer Initiative (DEPI)",
+      "location": "Hybrid",
+      "role": "Data Engineer Trainee",
+      "start": "Apr. 2024",
+      "end": "Oct. 2024",
+      "status": "done",
+      "type": "training",
+      "bullets": [
+        "Optimized complex SQL queries and built scalable data pipelines using Azure Databricks and Apache Spark for datasets exceeding 100GB.",
+        "Integrated MLOps workflows with MLflow for experiment tracking and model versioning within cloud-based architectures."
+      ],
+      "tags": ["SQL", "Azure Databricks", "Apache Spark", "MLflow", "MLOps", "data engineering"]
+    },
+    {
+      "id": "orascom-construction",
+      "org": "Orascom Construction",
+      "location": "Egypt",
+      "role": "Mechanical & Electrical Construction Engineer (Rotational Trainee)",
+      "start": "Jul. 2024",
+      "end": "Jul. 2024",
+      "status": "done",
+      "type": "internship",
+      "duration": "2 weeks",
+      "project": "Monorail Project",
+      "bullets": [
+        "Completed a cross-functional rotation across the Monorail Project covering technical electrical, construction mechanical (plumbing, firefighting, HVAC), project management, and safety departments — building end-to-end project visibility across disciplines.",
+        "Conducted on-ground technical training in mechanical and electrical construction, applying site-level engineering practices under active infrastructure conditions."
+      ],
+      "tags": ["mechanical", "electrical", "construction", "HVAC", "firefighting", "plumbing", "project-management", "safety", "site-engineering", "MEP", "infrastructure"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "grad-project-lifting-agv",
+      "title": "Graduation Project — Autonomous Lifting AGV for Warehouse Automation",
+      "tech": ["ROS2", "Mecanum Drive", "Embedded Systems", "Autonomous Navigation", "Lifting Mechanism", "SolidWorks"],
+      "date": "2026 -- Present",
+      "status": "ongoing",
+      "github": "",
+      "bullets": [
+        "Designing an autonomous mecanum-wheel AGV that lifts and relocates warehouse racks selected by the user, combining mechanical lift design with autonomous navigation and control software.",
+        "Building the navigation and control stack to let the AGV plan a path to a selected rack, position itself precisely underneath, and execute the lift-and-transport sequence without manual driving."
+      ],
+      "tags": ["robotics", "mechanical", "embedded", "autonomous-systems", "warehouse-automation", "mecanum", "graduation-project"],
+      "notes": "Graduation project. Warehouse rack-lifting AGV: user selects racks to move, AGV autonomously navigates and relocates them via mecanum-wheel base."
+    },
+    {
+      "id": "magnetic-box",
+      "title": "Foldable Magnetic Product Box",
+      "tech": ["SolidWorks", "DFM", "Cardboard Prototyping"],
+      "date": "Feb. 2026",
+      "status": "done",
+      "github": "",
+      "bullets": [
+        "Engineered a compact foldable enclosure from concept to physical prototype, integrating magnetic latching mechanisms and living-hinge geometry optimized for rapid field assembly and repeatable closure under production tolerances.",
+        "Enforced DFM constraints throughout the design cycle, eliminating post-fabrication rework by resolving hinge stress concentrations and magnetic alignment drift prior to first article inspection."
+      ],
+      "tags": ["mechanical", "CAD", "DFM", "product-design"],
+      "notes": "Potential freelancing/startup product angle."
+    },
+    {
+      "id": "mecanum-robot",
+      "title": "3-Wheeled Mecanum Mobile Robot",
+      "tech": ["SolidWorks", "Kinematics", "3D Printing", "micro-ROS", "ESP32", "OpenCV", "Digital Twin", "Simulation"],
+      "date": "Jan. 2026",
+      "status": "done",
+      "github": "https://github.com/ahmed-Ismail-elbrolosy/...",
+      "bullets": [
+        "Derived and validated closed-form kinematic equations for omnidirectional motion, then fabricated a full-scale prototype with silicon-molded mecanum wheels and a 3D-printed load-bearing chassis — achieving design-to-hardware turnaround without outsourced manufacturing.",
+        "Integrated a 7-parameter soil sensor and OpenCV plant-detection module, enabling autonomous field condition assessment and demonstrating sensor-mechanical co-design across embedded and structural subsystems."
+      ],
+      "tags": ["mechanical", "CAD", "robotics", "kinematics", "micro-ROS", "digital-twin", "computer-vision", "embedded", "simulation"],
+      "notes": ""
+    },
+    {
+      "id": "agv",
+      "title": "Autonomous Guided Vehicle (AGV) System",
+      "tech": ["Python", "Raspberry Pi", "OpenCV", "ROS", "Embedded C"],
+      "date": "Jan. 2024",
+      "status": "done",
+      "github": "https://github.com/ahmed-Ismail-elbrolosy/...",
+      "bullets": [
+        "Designed and built a vision-guided AGV platform featuring QR-code localization and closed-loop line tracking, then mounted a custom 2-DOF robotic arm rated to a 4kg payload for autonomous pick-and-place operations."
+      ],
+      "tags": ["robotics", "computer-vision", "embedded", "mechanical"],
+      "notes": "Could be extended with ROS2 Nav2 stack and published as a paper."
+    }
+  ],
+  "publications": [],
+  "certifications": [
+    {
+      "id": "cswp",
+      "name": "Certified SolidWorks Professional (CSWP)",
+      "issuer": "Dassault Systèmes",
+      "date": "Dec. 2025",
+      "status": "done",
+      "url": ""
+    },
+    {
+      "id": "cswa",
+      "name": "Certified SolidWorks Associate (CSWA)",
+      "issuer": "Dassault Systèmes",
+      "date": "Sep. 2025",
+      "status": "done",
+      "url": ""
+    }
+  ],
+  "volunteer": [
+    {
+      "id": "rov-club-swe",
+      "org": "Robotics Club — ROV Competition Team",
+      "chapter": "EJUST",
+      "role": "Software Engineer (Volunteer)",
+      "start": "Oct. 2025",
+      "end": "Present",
+      "status": "ongoing",
+      "bullets": [
+        "Developed a photogrammetry pipeline for the competition team, processing multi-angle visual captures to reconstruct 3D models of underwater structures for inspection and documentation."
+      ],
+      "tags": ["robotics", "photogrammetry", "software", "competition"],
+      "notes": "Volunteering role — distinct from ROV research team membership."
+    },
+    {
+      "id": "ieee-ras",
+      "org": "IEEE Robotics and Automation Society (RAS)",
+      "chapter": "EJUST Chapter",
+      "role": "Electronics & Robotics Software Volunteer / 3D Printer Project Leader",
+      "start": "Oct. 2024",
+      "end": "Jun. 2026",
+      "bullets": [
+        "Assisted in hardware integration and circuit debugging for competition-level robotic systems; mentored junior members on embedded electronics fundamentals.",
+        "Led a team project to build a 3D printer from scratch, mentoring members through mechanical assembly, calibration, and troubleshooting end-to-end.",
+        "Maintained and calibrated a 3D printer for the team (May 2026), ensuring reliable part fabrication for hardware prototyping and competition build cycles."
+      ]
+    },
+    {
+      "id": "deci",
+      "org": "DECI — eYouth",
+      "chapter": "Offline",
+      "role": "Coding Instructor",
+      "start": "May 8, 2026",
+      "end": "May 9, 2026",
+      "date": "May 2026",
+      "bullets": [
+        "Delivered 2-day offline coding instruction to groups of 15–20 students (middle school to high school age), facilitating hands-on sessions and adapting explanations to mixed skill levels."
+      ],
+      "tags": ["teaching", "coding", "offline", "instructor", "youth", "eYouth"],
+      "notes": "2-day event, May 8-9 2026. Organized by eYouth. Age range: middle school to high school. Groups of 15–20 students."
+    },
+    {
+      "id": "demi",
+      "org": "Digital Egypt Marvels Initiative (DEMI)",
+      "chapter": "Online — iSchool",
+      "role": "Programming Instructor",
+      "start": "Jun. 2024",
+      "end": "Sep. 2024",
+      "bullets": [
+        "Introduced computational thinking and block-based programming to students aged 10–12 over a 2-month online program in partnership with iSchool, fostering early STEM interest."
+      ],
+      "tags": ["teaching", "programming", "online", "youth", "iSchool"],
+      "notes": "2-month online program with iSchool. Age group: 10–12."
+    }
+  ],
+  "skills": {
+    "Robotics & AI": ["ROS2", "Nav2", "VSLAM", "SLAM", "RTAB-Map", "MoveIt2", "PyTorch", "TensorFlow", "OpenCV", "YOLO"],
+    "Mechanical & CAD": ["SolidWorks (CSWP)", "FEA", "GD&T", "DFM", "3D Printing", "Mechanism Design", "Kinematics", "Altium Designer"],
+    "Programming": ["Python", "Embedded C/C++", "SQL", "Linux", "Git", "MATLAB/Simulink", "Flask", "Azure Databricks", "Apache Spark"],
+    "Embedded Systems": ["Arduino", "ESP32/ESP8266", "micro-ROS", "MQTT", "I2C", "SPI", "UART", "BMS Design", "Real-Time Systems", "Sensor Fusion"],
+    "MEP & Site Engineering": ["HVAC Systems", "Firefighting Systems", "Plumbing", "MEP Coordination", "Site Engineering", "Construction Safety"]
+  },
+  "career_goals": {
+    "short_term": [
+      "Land a robotics/AI internship or research assistant role",
+      "Contribute to or publish one conference paper (target: ICRA, IROS, or local venue)",
+      "Build one freelancing-ready product or automation service"
+    ],
+    "medium_term": [
+      "Graduate with strong robotics research portfolio by May 2027",
+      "Apply for MSc in Robotics/AI (target: EJUST, TU Delft, KTH, ETH Zurich, or similar)",
+      "Launch a small robotics-related freelance or startup side gig"
+    ],
+    "long_term": [
+      "Pursue PhD in Robotics or Autonomous Systems",
+      "Build a scalable product, service, or process that runs without daily involvement"
+    ],
+    "focus_areas": ["autonomous systems", "robot perception", "SLAM", "embedded AI", "mechatronics product design"]
+  },
+  "career_variants": {
+    "ai_robotics_engineer": {
+      "description": "For robotics research labs, internships, competitions (ICRA, RoboCup). Lead with ROS2/SLAM/Nav2 experience.",
+      "section_order": ["education", "skills", "experience", "projects", "volunteer"],
+      "highlight_tags": ["robotics", "SLAM", "ROS2", "computer-vision", "AI"]
+    },
+    "mechanical_designer": {
+      "description": "For mechanical/product design roles, CAD-heavy positions. Lead with CSWP, DFM, fabrication.",
+      "section_order": ["education", "experience", "projects", "skills"],
+      "highlight_tags": ["mechanical", "CAD", "DFM", "embedded", "manufacturing"]
+    },
+    "ml_engineer": {
+      "description": "For AI/ML internships and data roles. Emphasize PyTorch, pipelines, Samsung Innovation Campus (SIC).",
+      "section_order": ["education", "skills", "experience", "projects"],
+      "highlight_tags": ["deep-learning", "AI", "ML", "data engineering"]
+    },
+    "automotive_mechatronics": {
+      "description": "For automotive internships (Toyota, Valeo, Bosch, etc). Lead with embedded control, CAD/DFM, and integrated systems.",
+      "section_order": ["education", "skills", "experience", "projects", "certifications", "volunteer"],
+      "highlight_tags": ["mechanical", "embedded", "robotics", "CAD", "real-time", "sensor-fusion"]
+    },
+    "mep_construction": {
+      "description": "For MEP, construction, or site engineering roles. Lead with firefighting/HVAC site experience and cross-disciplinary construction exposure.",
+      "section_order": ["education", "experience", "skills", "projects", "certifications"],
+      "highlight_tags": ["mechanical", "HVAC", "firefighting", "MEP", "construction", "site-engineering", "infrastructure"]
+    }
+  }
+}
