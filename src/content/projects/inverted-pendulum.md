@@ -1,6 +1,5 @@
 ---
 order: 2
-dedicated: true
 title: Inverted Pendulum
 navTitle: Inverted Pendulum
 description: Control research across single, double, and triple inverted-pendulum systems.

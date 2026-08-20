@@ -62,7 +62,7 @@ Required order:
 5. Skills
 6. Contact
 
-The Contact section also holds the About-style biography.
+The Contact section also holds the About-style biography. Website copy is normalized under `src/`; vault notes are editorial handoff material and never load directly at build time.
 
 ## Project Presentation
 

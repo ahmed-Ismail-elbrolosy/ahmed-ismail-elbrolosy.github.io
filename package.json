@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "sync:vault-assets": "node scripts/sync-vault-assets.mjs",
-    "check": "npm run sync:vault-assets && astro check",
-    "build": "npm run sync:vault-assets && astro build",
+    "check": "astro check",
+    "build": "astro build",
     "preview": "astro preview",
     "check:links": "node scripts/check-links.mjs"
   },

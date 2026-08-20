@@ -1,6 +1,5 @@
 ---
 order: 5
-dedicated: true
 title: Robotino
 navTitle: Robotino
 description: Three-wheel omnidirectional robot integrating custom kinematics, mechanical fabrication, micro-ROS, and computer vision.

@@ -31,11 +31,12 @@ npm run preview
 
 ```text
 .github/workflows/deploy.yml  GitHub Pages workflow
-porto_vault/projects/         Canonical Obsidian-compatible project records
+porto_vault/                  Editable editorial handoff notes
 public/                       Replaceable images, videos, diagrams, and resume
 scripts/check-links.mjs       Generated-site internal link validator
 src/components/               Shared UI and project components
-src/data/career.ts            Personal, education, and experience data
+src/content/projects/         Website-owned project records
+src/data/                     Website-owned homepage and career data
 docs/design-system.md         Visual and interaction consistency rules
 src/layouts/                  Shared page and project layouts
 src/pages/                    Home and generated project routes
@@ -44,25 +45,21 @@ src/content.config.ts         Project schema
 astro.config.ts               Static and GitHub Pages configuration
 ```
 
-The source `.txt` files in the repository root remain reference material. Project content lives in `porto_vault/projects/`; each Markdown record is either a dedicated page (`dedicated: true`) or an Additional Work archive entry.
-
-Project attachments stay beside the related vault project. `npm run sync:vault-assets` mirrors non-Markdown, non-HTML vault attachments to `public/project-assets/` before checks and builds. Reference them in frontmatter as root-relative `/project-assets/...` paths.
+The vault is an editorial handoff, not the website CMS. Edit `porto_vault/main.md` and each `porto_vault/projects/<project>/index.md`, then request a website update. The notes and attachments are reviewed, rewritten where needed, and manually transferred into normalized website sources under `src/` and `public/`.
 
 ## Add or Edit a Major Project
 
-Each project is a Markdown file in `porto_vault/projects/`. Edit its frontmatter and section descriptions there. A `dedicated: true` record automatically creates a project page and homepage project card; other records appear in Additional Work.
+Website project pages use normalized Markdown in `src/content/projects/`. Vault notes do not change the website automatically.
 
 To add a new major project:
 
-1. Copy an existing file in `porto_vault/projects/`.
-2. Give it a unique filename; that filename becomes its URL slug.
-3. Assign a unique numeric `order`.
-4. Complete required frontmatter fields according to `src/content.config.ts`.
-5. Run `npm run check` and `npm run build`.
+1. Create `porto_vault/projects/<project>/index.md` and add project attachments beside it.
+2. Fill the visible Markdown sections with evidence-backed details.
+3. Request a website update.
+4. Normalize the approved content into `src/content/projects/<slug>.md` or `src/data/secondary-projects.ts`.
+5. Copy only selected website assets into `public/`, then run checks and build.
 
-The project automatically appears in the homepage overview, project-page sub-navigation, and previous/next sequence.
-
-Archive records omit `dedicated: true`. They do not receive full pages or project-navigation links.
+A normalized file in `src/content/projects/` automatically appears in the homepage overview, project sub-navigation, and previous/next sequence. Additional Work remains normalized in `src/data/secondary-projects.ts`.
 
 ## Replace Media Placeholders
 
@@ -78,6 +75,7 @@ Never use filesystem-absolute paths. `assetPath()` applies Astro's deployment ba
 ## Edit Homepage Content
 
 - Personal details, education, and experience: `src/data/career.ts`
+- Homepage identity and positioning: `src/data/site.ts`
 - Nokia x ODC and Torphy currently have intentional blank entries marked `pending`.
 - Homepage sections and section order: `src/pages/index.astro`
 - Homepage secondary archive: `src/data/secondary-projects.ts`
@@ -118,11 +116,11 @@ If the repository is renamed, no source change is required. A custom domain requ
 
 ## First Files to Edit
 
-1. `porto_vault/projects/roviro.md`
-2. `porto_vault/projects/robotino.md`
+1. `src/content/projects/roviro.md`
+2. `src/content/projects/robotino.md`
 3. `src/data/career.ts`
-4. Other archive records in `porto_vault/projects/`
+4. `src/data/secondary-projects.ts`
 5. `src/pages/index.astro`
-6. Other files in `porto_vault/projects/`
+6. Other files in `src/content/projects/`
 7. `src/styles/global.css` for design tokens
 8. `docs/design-system.md`

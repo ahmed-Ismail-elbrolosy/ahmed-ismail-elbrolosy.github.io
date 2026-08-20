@@ -49,3 +49,37 @@ Remember: the header should contain section navigation only unless the identity 
 Removed the portrait experiment and its dedicated hero column after repeated compositing work did not meet the editorial standard. Rebalanced the existing hero grid around the index, role headline, and engineering statement without changing typography or copy. Shifted the page foundation to a neutral creamy white (`#F4F2EC`) with a slightly lighter surface.
 
 Remember: keep the hero image-free until a professionally photographed portrait is available. Original source photos remain under `pics/me/`; generated public composites are not part of the site.
+
+## 2026-08-20 — Editorial Vault Handoff
+
+Reorganized every project into `porto_vault/projects/<project>/index.md`, with attachments retained in the same folder. Converted project notes and `main.md` to visible, human-readable Markdown instead of schema frontmatter. Restored independent website sources under `src/content/` and `src/data/`; Astro no longer reads the vault or copies its attachments automatically.
+
+Chose an explicit human review step because vault notes are source material, not publish-ready CMS records. This allows copy editing, evidence checks, asset selection, and schema normalization before website changes ship. It also prevents partial notes from appearing publicly.
+
+Remember: the user edits vault notes, then requests an update. Review and manually transfer approved content into `src/` and selected assets into `public/`.
+
+## 2026-08-20 - Zsh Zellij Completion Fix
+
+Corrected `~/.zshrc`'s Zellij completion wrapper. Zellij declares `a` as an exact alias for `attach`, so generated Zsh completion normally accepts it and inserts a trailing space. The wrapper instead keeps the alias as `a` and completes active session names directly from `zellij list-sessions --short`.
+
+Restored styled `copy FILE` and `paste FILE` helpers with validation, byte/word/line statistics, overwrite confirmation, and paste preview. They prefer native Wayland clipboard tools and fall back to `xclip`; the old `copy` alias and redundant `clip-copy`/`clip-paste` functions were removed.
+
+Added a ZLE Tab wrapper so both `zellij a<Tab>` and `zellij a <Tab>` invoke active-session completion without expanding the `a` alias. Verified this through a pseudo-terminal against two temporary detached sessions, then removed them.
+
+Standardized directional pane controls across WezTerm and Zellij. WezTerm now uses Alt+H/J/K/L or Alt+Arrows to focus native panes and Ctrl equivalents to resize them; when Zellij is foreground, those keys are forwarded instead. Zellij keeps Alt directional focus and handles Ctrl directional resize in normal mode. Keeping Ctrl bindings normal-mode-only avoids collisions with Zellij's prompt and rename modes.
+
+Re-enabled Zellij `session_serialization`, which had explicitly been disabled in the carried-over config. Active sessions were visible only while their server survived; exited sessions therefore disappeared from outside-shell completion. Verified that a saved and terminated test session remained listed as resurrectable through `zellij list-sessions --short`, then deleted the test record.
+
+Enabled Zellij's unlock-first workflow with `default_mode "locked"` and a plain Ctrl+G normal/locked toggle. Changed global Alt pane bindings to exclude locked mode, so locked sessions pass application keys through instead of retaining pane controls.
+
+Added terminal-level Ctrl+Shift+] in WezTerm to close the current pane immediately with no confirmation. WezTerm consumes the key before the PTY, preventing Zellij, OpenCode, or Neovim from receiving it. Retained Ctrl+Alt+W as the existing confirmed close action.
+
+Chose to remove the premature `CURRENT == 2` branch rather than change the Tab key binding or Zellij configuration: the fault was isolated to the local completion wrapper, while Zellij's generated completion should own subcommand suggestions. Future session completion remains available for `attach`, `watch`, `kill-session`, and `delete-session`.
+
+## 2026-08-20 - ROViro Evidence-Led Case Study
+
+Rebuilt the ROViro editorial note and live project record from the current simulator source plus external Gazebo, DAVE, Stonefish, and ROS documentation. The page now distinguishes implemented simulation, media, bridge, and telemetry work from RTAB-Map, MeshLab, and thruster-TUI validation still being completed. Added intentional placeholders for seven requested evidence captures.
+
+Rejected the claim that Gazebo “guesses” reactions while Stonefish computes exact geometry physics. Gazebo uses collision geometry for buoyancy but normally configured hydrodynamic coefficients; Stonefish uses geometry-informed drag and surface buoyancy with simplified added-mass approximations. Neither is CFD.
+
+The companion workspace migrated to ROS 2 Lyrical, Gazebo Jetty, C++20, and Python 3.14. Keep portfolio result claims gated on reproducible captures, units, reference dimensions, and error calculations.

@@ -1,6 +1,5 @@
 ---
 order: 4
-dedicated: true
 title: Trash Collector
 navTitle: Trash Collector
 description: School robotics project focused on a physical waste-collection mechanism.

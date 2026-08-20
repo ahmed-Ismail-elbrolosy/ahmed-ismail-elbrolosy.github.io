@@ -1,6 +1,5 @@
 ---
 order: 6
-dedicated: true
 title: Linear Actuator Reverse Engineering & Control
 navTitle: Linear Actuator
 previewTitle: Linear Actuator Control

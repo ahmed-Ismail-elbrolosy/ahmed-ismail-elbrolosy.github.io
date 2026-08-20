@@ -1,5 +1,4 @@
 node_modules/
 dist/
 .astro/
-public/project-assets/
 .DS_Store
