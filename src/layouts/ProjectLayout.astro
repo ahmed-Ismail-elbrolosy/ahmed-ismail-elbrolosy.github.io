@@ -21,7 +21,7 @@ const { project, previous, next } = Astro.props;
     <ProjectSubnav currentProject={project} />
     <ProjectHeader project={project} />
     <div class="project-hero shell">
-      <MediaPlaceholder label={project.data.heroMedia} ratio="wide" index={`P.${project.data.order.toString().padStart(2, '0')}`} />
+      <MediaPlaceholder label={project.data.heroMedia ?? 'PROJECT MEDIA'} ratio="wide" index={`P.${project.data.order.toString().padStart(2, '0')}`} />
     </div>
     <div class="project-sections shell">
       {project.data.sections.map((section, index) => (

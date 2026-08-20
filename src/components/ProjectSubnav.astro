@@ -1,5 +1,5 @@
 ---
-import { getProjects, type Project } from '../utils/projects';
+import { getDedicatedProjects, type Project } from '../utils/projects';
 import { sitePath } from '../utils/paths';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { currentProject } = Astro.props;
-const projects = await getProjects();
+const projects = await getDedicatedProjects();
 ---
 
 <nav class="project-subnav" aria-label="Project navigation">
@@ -19,7 +19,7 @@ const projects = await getProjects();
       const href = sitePath(`projects/${project.id}`);
       return (
         <a class="project-subnav-link" href={href} aria-current={currentProject.id === project.id ? 'page' : undefined}>
-          {project.data.navTitle}
+          {project.data.navTitle ?? project.data.title}
         </a>
       );
     })}

@@ -1,6 +1,6 @@
 # Ahmed Elbrolosy Engineering Portfolio
 
-Static robotics, control systems, embedded systems, and mechatronics portfolio built with Astro and TypeScript. The homepage is the primary scan surface: visitors can move through projects, experience, education, skills, and contact details without leaving the page, while each major project still has its own dedicated case-study page.
+Static systems-engineering and product-design portfolio built with Astro and TypeScript. It documents mechanical design, embedded systems, robotics, control, SLAM, and computer vision work.
 
 ## Local Development
 
@@ -31,12 +31,11 @@ npm run preview
 
 ```text
 .github/workflows/deploy.yml  GitHub Pages workflow
-public/                       Replaceable images, videos, and diagrams
+porto_vault/projects/         Canonical Obsidian-compatible project records
+public/                       Replaceable images, videos, diagrams, and resume
 scripts/check-links.mjs       Generated-site internal link validator
 src/components/               Shared UI and project components
-src/content/projects/         Major project Markdown records
 src/data/career.ts            Personal, education, and experience data
-src/data/secondary-projects.ts Secondary project archive
 docs/design-system.md         Visual and interaction consistency rules
 src/layouts/                  Shared page and project layouts
 src/pages/                    Home and generated project routes
@@ -45,15 +44,17 @@ src/content.config.ts         Project schema
 astro.config.ts               Static and GitHub Pages configuration
 ```
 
-The source `.txt` files in the repository root remain reference material. The website uses normalized, typed content under `src/content/` and `src/data/`.
+The source `.txt` files in the repository root remain reference material. Project content lives in `porto_vault/projects/`; each Markdown record is either a dedicated page (`dedicated: true`) or an Additional Work archive entry.
+
+Project attachments stay beside the related vault project. `npm run sync:vault-assets` mirrors non-Markdown, non-HTML vault attachments to `public/project-assets/` before checks and builds. Reference them in frontmatter as root-relative `/project-assets/...` paths.
 
 ## Add or Edit a Major Project
 
-Each major project is a Markdown file in `src/content/projects/`. Edit frontmatter fields and section descriptions in that file. The shared dynamic route automatically creates the project page and the homepage project overview card.
+Each project is a Markdown file in `porto_vault/projects/`. Edit its frontmatter and section descriptions there. A `dedicated: true` record automatically creates a project page and homepage project card; other records appear in Additional Work.
 
 To add a new major project:
 
-1. Copy an existing file in `src/content/projects/`.
+1. Copy an existing file in `porto_vault/projects/`.
 2. Give it a unique filename; that filename becomes its URL slug.
 3. Assign a unique numeric `order`.
 4. Complete required frontmatter fields according to `src/content.config.ts`.
@@ -61,7 +62,7 @@ To add a new major project:
 
 The project automatically appears in the homepage overview, project-page sub-navigation, and previous/next sequence.
 
-Secondary archive records live in `src/data/secondary-projects.ts`. They do not receive full pages or top-navigation links.
+Archive records omit `dedicated: true`. They do not receive full pages or project-navigation links.
 
 ## Replace Media Placeholders
 
@@ -70,9 +71,9 @@ Current project entries provide labels to `MediaPlaceholder.astro`. To replace o
 1. Put media in `public/images/`, `public/videos/`, or `public/diagrams/`.
 2. Replace the corresponding `MediaPlaceholder` call in the shared layout, or extend project schema with a media source field.
 3. Use semantic `<img>`, `<video>`, or `<figure>` markup with useful alt text or captions.
-4. Prefix public asset URLs with `import.meta.env.BASE_URL` or use the `sitePath()` helper so project-site deployment remains valid.
+4. Store public asset paths as root-relative values, for example `/images/robot.webp`, then render them through `assetPath()` so project-site deployment remains valid.
 
-Do not use root-relative paths such as `/images/robot.webp`; they break when deployed beneath a repository base path.
+Never use filesystem-absolute paths. `assetPath()` applies Astro's deployment base to stored root-relative asset references.
 
 ## Edit Homepage Content
 
@@ -83,18 +84,7 @@ Do not use root-relative paths such as `/images/robot.webp`; they break when dep
 - Design consistency rules: `docs/design-system.md`
 - Normalized organization logos: `public/images/companies/`
 
-If you want your portrait to appear in the hero:
-
-1. Put the image in `public/images/profile/`
-2. Set `personal.portrait` in `src/data/career.ts`, for example:
-
-```ts
-portrait: 'images/profile/ahmed-elbrolosy.webp'
-```
-
-`src/pages/index.astro` applies the GitHub Pages base path with `assetPath()`. Keep the stored value relative and do not begin it with `/`. The current placeholder remains intentional until the image is added.
-
-Organization logos are delivered as normalized WebP files. Add a relative `logo` and descriptive `logoAlt` to the corresponding experience in `src/data/career.ts`. Original supplied files remain under `pics/` for reference.
+Organization logos are delivered as normalized WebP files. Add a root-relative `logo` and descriptive `logoAlt` to the corresponding experience in `src/data/career.ts`. Original supplied files remain under `pics/` for reference.
 
 ## Navigation Model
 
@@ -128,11 +118,11 @@ If the repository is renamed, no source change is required. A custom domain requ
 
 ## First Files to Edit
 
-1. `src/content/projects/roviro.md`
-2. `src/content/projects/inverted-pendulum.md`
+1. `porto_vault/projects/roviro.md`
+2. `porto_vault/projects/robotino.md`
 3. `src/data/career.ts`
-4. `src/data/secondary-projects.ts`
+4. Other archive records in `porto_vault/projects/`
 5. `src/pages/index.astro`
-6. Other files in `src/content/projects/`
+6. Other files in `porto_vault/projects/`
 7. `src/styles/global.css` for design tokens
 8. `docs/design-system.md`

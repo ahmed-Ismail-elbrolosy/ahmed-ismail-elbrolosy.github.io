@@ -68,16 +68,15 @@ The Contact section also holds the About-style biography.
 
 - ROViro and Inverted Pendulum receive greater visual prominence.
 - Other major projects are smaller but still clear and direct.
-- Secondary archive projects remain on the homepage only unless promoted to full case-study status.
+- Archive projects remain on the homepage only unless promoted to full case-study status. Each gets a full-color side image or the standard technical media placeholder.
 - Every major project keeps a dedicated page with reusable structure.
 
-## Portrait Treatment
+## Skills
 
-- The visitor should see Ahmed’s face near the top of the homepage.
-- Use a clean, formal portrait rather than a stylized effect-heavy image.
-- Crop should be calm and professional.
-- Frame should match the same technical placeholder/media language.
-- Store the final portrait in `public/images/profile/` and keep the source path in `personal.portrait`.
+- Keep the existing category groupings.
+- Show branded software and platforms as compact icon cards with a one-line description.
+- Keep engineering methods, protocols, and disciplines as plain text tags.
+- Do not show proficiency bars, levels, or ratings.
 
 ## Organization Logos
 

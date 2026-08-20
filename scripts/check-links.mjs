@@ -16,12 +16,14 @@ const requiredProjectSubnav = [
   '#projects',
   'projects/roviro',
   'projects/inverted-pendulum',
-  'projects/boogy-rover',
+  'projects/rocker-bogie',
   'projects/trash-collector',
   'projects/robotino',
   'projects/linear-actuator',
   'projects/self-balancing-robot',
 ];
+
+const pendingAssets = new Set(['resume.pdf']);
 
 async function collect(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -71,6 +73,7 @@ for (const htmlFile of htmlFiles) {
   for (const href of links) {
     if (/^(?:https?:|mailto:|tel:|#)/.test(href)) continue;
     const target = outputPathFor(href);
+    if (pendingAssets.has(path.relative(root, target))) continue;
     try {
       await access(target);
     } catch {

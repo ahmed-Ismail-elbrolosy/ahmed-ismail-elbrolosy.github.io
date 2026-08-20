@@ -11,7 +11,7 @@ const title = project.data.previewTitle ?? project.data.title;
 
 <article class:list={['project-preview', { featured }]}>
   <a class="preview-media-link" href={sitePath(`projects/${project.id}`)} aria-label={`View ${title}`}>
-    <MediaPlaceholder label={project.data.heroMedia} ratio={featured ? 'wide' : 'standard'} index={projectNumber(project.data.order)} />
+    <MediaPlaceholder label={project.data.heroMedia ?? 'PROJECT MEDIA'} ratio={featured ? 'wide' : 'standard'} index={projectNumber(project.data.order)} />
   </a>
   <div class="preview-details">
     <div class="preview-index">{projectNumber(project.data.order)}</div>

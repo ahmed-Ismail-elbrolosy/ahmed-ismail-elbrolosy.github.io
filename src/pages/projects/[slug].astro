@@ -1,10 +1,10 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
-import { getProjects, type Project } from '../../utils/projects';
+import { getDedicatedProjects, type Project } from '../../utils/projects';
 
 export const getStaticPaths = (async () => {
-  const projects = await getProjects();
+  const projects = await getDedicatedProjects();
   return projects.map((project, index) => ({
     params: { slug: project.id },
     props: {

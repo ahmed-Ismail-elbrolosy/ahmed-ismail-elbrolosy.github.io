@@ -28,4 +28,24 @@ Moved biography, contact, education, experience, and skills onto the homepage so
 
 Chose a single-page homepage because it reduces navigation friction and matches the goal of showing projects, credentials, and contact details within minutes. Kept dedicated project pages because project evidence still needs its own structure. Avoided reintroducing a separate About page to prevent duplicated content and split attention.
 
-Remember: if a portrait is added later, route it through a base-aware helper instead of hardcoding a root-relative path. Link checks now validate homepage anchor navigation and project-page sub-navigation separately.
+Remember: store portrait paths as root-relative values and render them through the base-aware `assetPath()` helper. Link checks now validate homepage anchor navigation and project-page sub-navigation separately.
+
+## 2026-08-20 — Vault-Driven Project Records
+
+Moved the canonical project collection to `porto_vault/projects/`. Every record now declares whether it is a dedicated case study or an Additional Work entry; pages, project navigation, previews, and archive rendering derive from that single collection. Added canonical records for all vault projects, replaced the duplicate Mecanum archive record with expanded Robotino documentation, and added a build-time attachment mirror into `public/project-assets/`.
+
+Chose Astro's existing content collection rather than a bespoke vault parser because it preserves schema validation and static routing while letting Obsidian-compatible Markdown remain the editing surface. Stored media references as root-relative values and render them through `assetPath()` for base-aware deployment. A resume link intentionally targets `/resume.pdf` until the PDF is supplied; link validation permits that pending asset only.
+
+Remember: add project Markdown in the vault, place attachments beside its project files, and run normal checks/builds to sync them. Do not add a separate archive data source.
+
+## 2026-08-20 — Compact Section Navigation
+
+Removed the identity portion of the sticky header while retaining the section navigation strip. Restored the header offset for hero and project subnavigation positioning. Copied the supplied portrait from `pics/me/meprofile.png` to `public/images/profile/ahmed-elbrolosy.png` and set the root-relative, base-aware portrait path in personal data.
+
+Remember: the header should contain section navigation only unless the identity treatment is intentionally redesigned.
+
+## 2026-08-20 — Image-Free Hero
+
+Removed the portrait experiment and its dedicated hero column after repeated compositing work did not meet the editorial standard. Rebalanced the existing hero grid around the index, role headline, and engineering statement without changing typography or copy. Shifted the page foundation to a neutral creamy white (`#F4F2EC`) with a slightly lighter surface.
+
+Remember: keep the hero image-free until a professionally photographed portrait is available. Original source photos remain under `pics/me/`; generated public composites are not part of the site.

@@ -19,8 +19,6 @@ export const personal = {
   email: 'ahmedismailahmed2004@gmail.com',
   linkedin: 'https://linkedin.com/in/ahmed-ismail-elbrolosy',
   github: 'https://github.com/ahmed-Ismail-elbrolosy',
-  portrait: '',
-  portraitAlt: 'Portrait of Ahmed Elbrolosy',
 };
 
 export const education = {
@@ -28,8 +26,9 @@ export const education = {
   location: 'Burj El-Arab, Alexandria',
   degree: 'Bachelor of Engineering in Mechatronics',
   gpa: '3.54 / 4.0',
-  period: 'Oct. 2022 — Expected May 2027',
+  period: 'Oct. 2022 — May 2027',
   year: '4th year',
+  expectedGraduation: 'May 2027',
 };
 
 export const experiences: Experience[] = [
@@ -41,7 +40,7 @@ export const experiences: Experience[] = [
     bullets: [],
     tags: [],
     pending: true,
-    logo: 'images/companies/nokia-odc.webp',
+    logo: '/images/companies/nokia-odc.webp',
     logoAlt: 'Nokia and Orange Digital Center',
   },
   {
@@ -52,7 +51,7 @@ export const experiences: Experience[] = [
     bullets: [],
     tags: [],
     pending: true,
-    logo: 'images/companies/trophy-technologies.webp',
+    logo: '/images/companies/trophy-technologies.webp',
     logoAlt: 'Trophy Technologies',
   },
   {
@@ -91,7 +90,7 @@ export const experiences: Experience[] = [
       'Reviewed mechanical drawings and coordinated with site engineers on system compliance.',
     ],
     tags: ['HVAC', 'Firefighting', 'Construction', 'MEP'],
-    logo: 'images/companies/acon.webp',
+    logo: '/images/companies/acon.webp',
     logoAlt: 'A.CON',
   },
   {
@@ -106,7 +105,7 @@ export const experiences: Experience[] = [
       'Worked on feature engineering and data preprocessing for fashion datasets.',
     ],
     tags: ['PyTorch', 'CNN', 'AlexNet', 'Flask', 'Streamlit'],
-    logo: 'images/companies/samsung-innovation-campus.webp',
+    logo: '/images/companies/samsung-innovation-campus.webp',
     logoAlt: 'Samsung Innovation Campus and Life Makers Egypt',
   },
   {
@@ -121,7 +120,7 @@ export const experiences: Experience[] = [
       'Built IoT prototypes using I2C, SPI, UART, and Bluetooth communication.',
     ],
     tags: ['Altium Designer', 'PCB', 'ESP32', 'Arduino', 'MQTT', 'BMS'],
-    logo: 'images/companies/eme-itida.webp',
+    logo: '/images/companies/eme-itida.webp',
     logoAlt: 'Egypt Makes Electronics Innovation Hub',
   },
   {
@@ -147,15 +146,61 @@ export const experiences: Experience[] = [
       'Participated in mechanical and electrical construction training under active site conditions.',
     ],
     tags: ['Mechanical', 'Electrical', 'HVAC', 'MEP', 'Infrastructure'],
-    logo: 'images/companies/orascom.webp',
+    logo: '/images/companies/orascom.webp',
     logoAlt: 'Orascom Construction Industries',
   },
 ];
 
-export const skills = {
-  'Robotics & AI': ['ROS2', 'Nav2', 'VSLAM', 'SLAM', 'RTAB-Map', 'MoveIt2', 'PyTorch', 'TensorFlow', 'OpenCV', 'YOLO'],
-  'Mechanical & CAD': ['SolidWorks (CSWP)', 'FEA', 'GD&T', 'DFM', '3D Printing', 'Mechanism Design', 'Kinematics', 'Altium Designer'],
-  Programming: ['Python', 'Embedded C/C++', 'SQL', 'Linux', 'Git', 'MATLAB/Simulink', 'Flask', 'Azure Databricks', 'Apache Spark'],
-  'Embedded Systems': ['Arduino', 'ESP32/ESP8266', 'micro-ROS', 'MQTT', 'I2C', 'SPI', 'UART', 'BMS Design', 'Real-Time Systems', 'Sensor Fusion'],
-  'MEP & Site Engineering': ['HVAC Systems', 'Firefighting Systems', 'Plumbing', 'MEP Coordination', 'Site Engineering', 'Construction Safety'],
+export interface SkillTool {
+  name: string;
+  icon: string;
+  description: string;
+}
+
+export interface SkillGroup {
+  tools: SkillTool[];
+  tags: string[];
+}
+
+export const skills: Record<string, SkillGroup> = {
+  'Robotics & AI': {
+    tools: [
+      { name: 'ROS2', icon: 'ROS', description: 'Robot middleware' },
+      { name: 'PyTorch', icon: 'PT', description: 'Deep learning' },
+      { name: 'TensorFlow', icon: 'TF', description: 'ML workflows' },
+      { name: 'OpenCV', icon: 'CV', description: 'Computer vision' },
+    ],
+    tags: ['Nav2', 'VSLAM', 'SLAM', 'RTAB-Map', 'MoveIt2', 'YOLO'],
+  },
+  'Mechanical & CAD': {
+    tools: [
+      { name: 'SolidWorks', icon: 'SW', description: 'CAD and assemblies' },
+      { name: 'Altium Designer', icon: 'AD', description: 'PCB design' },
+    ],
+    tags: ['CSWP', 'FEA', 'GD&T', 'DFM', '3D Printing', 'Mechanism Design', 'Kinematics'],
+  },
+  Programming: {
+    tools: [
+      { name: 'Python', icon: 'PY', description: 'Automation and robotics' },
+      { name: 'Git', icon: 'GIT', description: 'Version control' },
+      { name: 'MATLAB / Simulink', icon: 'M', description: 'Modeling and simulation' },
+      { name: 'Linux', icon: 'LX', description: 'Development environment' },
+      { name: 'Flask', icon: 'FL', description: 'Web APIs' },
+      { name: 'Azure Databricks', icon: 'DB', description: 'Data engineering' },
+      { name: 'Apache Spark', icon: 'SP', description: 'Data processing' },
+    ],
+    tags: ['Embedded C/C++', 'SQL'],
+  },
+  'Embedded Systems': {
+    tools: [
+      { name: 'Arduino', icon: 'AR', description: 'Rapid prototyping' },
+      { name: 'ESP32', icon: 'E32', description: 'Wireless embedded systems' },
+      { name: 'micro-ROS', icon: 'uR', description: 'ROS on microcontrollers' },
+    ],
+    tags: ['MQTT', 'I2C', 'SPI', 'UART', 'BMS Design', 'Real-Time Systems', 'Sensor Fusion'],
+  },
+  // 'MEP & Site Engineering': {
+  //   tools: [],
+  //   tags: ['HVAC Systems', 'Firefighting Systems', 'Plumbing', 'MEP Coordination', 'Site Engineering', 'Construction Safety'],
+  // },
 };
