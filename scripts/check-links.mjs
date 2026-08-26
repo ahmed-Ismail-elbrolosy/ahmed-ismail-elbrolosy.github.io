@@ -19,10 +19,8 @@ const requiredProjectSubnav = [
   'projects/graduation-project',
   'projects/inverted-pendulum',
   'projects/rocker-bogie',
-  'projects/trash-collector',
   'projects/robotino',
   'projects/self-balancing-robot',
-  'projects/gan-gogh',
 ];
 
 const pendingAssets = new Set(['resume.pdf']);

@@ -118,3 +118,10 @@ Rejected real GIF conversion because MP4 is smaller, clearer, pausable, and acce
 
 Established rule for processing user notes and editorial updates in vault files: when scanning raw user notes or scratchpad additions (such as blockquotes or trailing comments in project notes), extract and normalize the facts into the structured sections/codebase, but always retain the user's raw notes and comments at the bottom of the file so they remain accessible for future context. Defined in `AGENTS.md`, `README.md`, and `docs/design-system.md`.
 
+## 2026-08-26 - Portfolio Archive and Media Reduction
+
+Moved Trash Collector and GAN Gogh from full case studies into Additional Work, leaving six ordered project pages. Narrowed the skills display to current core tools, compacted its cards, and rewrote homepage copy around mobile and underwater robotics research. Updated the generated-link fixture to match the smaller project navigation.
+
+Re-encoded nine referenced videos as H.264 with muted, fast-start output and converted four ROViro screenshots plus the GAN Gogh preview to JPEG. Each generated asset was probed before replacing its source. Removed explicitly unused files and media orphaned by the archive move; retaining compressed Trash Collector demonstrations was rejected because the archive record uses its chassis image and the files would remain unreachable. Project assets now occupy 17 MB, with all videos below 5 MB.
+
+Remember: after deleting Astro content entries, update `scripts/check-links.mjs` alongside navigation expectations. Keep archive media limited to files rendered by `secondary-projects.ts`; full source evidence remains in `porto_vault/`.

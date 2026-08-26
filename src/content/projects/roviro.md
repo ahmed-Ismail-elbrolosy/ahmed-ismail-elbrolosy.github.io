@@ -11,7 +11,7 @@ role: Former Software Lead / Independent Researcher
 stack: [ROS 2 Lyrical, Gazebo Jetty, C++20, Python, ArduSub, RTAB-Map, GStreamer, WebRTC, Rerun]
 heroMedia:
   type: image
-  src: project-assets/roviro/thumbnail.png
+  src: project-assets/roviro/thumbnail.jpg
   alt: ROViro marine robotics simulation and perception platform overview
   label: ROViro research platform
   caption: ROViro simulation-first platform combining Gazebo Jetty, BlueROV2 Heavy validation, ArduSub control, and stereo VSLAM mapping.
@@ -23,7 +23,7 @@ sections:
       - The intended ZED2i hardware is remote, so current development is simulation-first. Results from Gazebo are treated as software and experiment validation, not proof of physical underwater performance.
     media:
       - type: image
-        src: project-assets/roviro/heavybluerov-gazebo.png
+        src: project-assets/roviro/heavybluerov-gazebo.jpg
         alt: BlueROV2 Heavy model simulated in Gazebo Jetty
         label: Gazebo simulation baseline
         caption: BlueROV2 Heavy model in the underwater Gazebo scene used to isolate baseline control and VSLAM testing from asymmetric thruster tuning.
@@ -46,12 +46,12 @@ sections:
       - The mapping path records stereo data, replays it at 0.3× speed, applies 2× downscaling, and processes it with RTAB-Map. Rerun displays camera feeds, attitude and heave traces, the estimated trajectory, and the reconstructed point cloud.
     media:
       - type: image
-        src: project-assets/roviro/cockpit-operator-view.png
+        src: project-assets/roviro/cockpit-operator-view.jpg
         alt: Blue Robotics Cockpit operator view with multiple camera streams and vehicle telemetry
         label: Operator cockpit interface
         caption: Blue Robotics Cockpit dashboard aggregating GStreamer and MediaMTX RTSP streams, primary camera, and live telemetry.
       - type: image
-        src: project-assets/roviro/cockpit-inside-plane.png
+        src: project-assets/roviro/cockpit-inside-plane.jpg
         alt: Vehicle cockpit view exploring the interior of a submerged aircraft wreck
         label: Underwater scene navigation
         caption: Interior navigation within the submerged aircraft model during the stereo mapping and trajectory recording run.

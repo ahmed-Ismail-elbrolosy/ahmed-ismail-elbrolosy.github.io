@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 6
 title: Self-Balancing Robot / PID Control
 navTitle: Self-Balancing Robot
 previewTitle: Self-Balancing Robot

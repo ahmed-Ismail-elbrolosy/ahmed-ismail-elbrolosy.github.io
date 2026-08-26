@@ -1,5 +1,5 @@
 ---
-order: 6
+order: 5
 title: Robotino
 navTitle: Robotino
 description: A three-wheel omnidirectional robot built with custom molded rollers, wireless micro-ROS control, and camera-defined global localization.

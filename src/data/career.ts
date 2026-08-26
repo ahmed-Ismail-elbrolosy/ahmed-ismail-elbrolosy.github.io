@@ -177,8 +177,6 @@ export const skills: Record<string, SkillGroup> = {
   'Robotics & AI': {
     tools: [
       { name: 'ROS 2', icon: 'images/skills/ros2.svg', description: 'Robot middleware' },
-      { name: 'PyTorch', icon: 'images/skills/pytorch.svg', description: 'Deep learning' },
-      { name: 'TensorFlow', icon: 'images/skills/tensorflow.svg', description: 'ML workflows' },
       { name: 'OpenCV', icon: 'images/skills/opencv.svg', description: 'Computer vision' },
     ],
     tags: ['Nav2', 'VSLAM', 'SLAM', 'RTAB-Map', 'MoveIt2', 'YOLO'],
@@ -196,9 +194,6 @@ export const skills: Record<string, SkillGroup> = {
       { name: 'Git', icon: 'images/skills/git.svg', description: 'Version control' },
       { name: 'MATLAB / Simulink', icon: 'images/skills/matlab.svg', description: 'Modeling and simulation' },
       { name: 'Linux', icon: 'images/skills/linux.svg', description: 'Development environment' },
-      { name: 'Flask', icon: 'images/skills/flask.svg', description: 'Web APIs' },
-      { name: 'Azure Databricks', icon: 'images/skills/databricks.svg', description: 'Data engineering' },
-      { name: 'Apache Spark', icon: 'images/skills/apachespark.svg', description: 'Data processing' },
     ],
     tags: ['Embedded C/C++', 'SQL'],
   },
