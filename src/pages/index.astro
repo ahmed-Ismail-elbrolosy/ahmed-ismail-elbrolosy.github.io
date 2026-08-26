@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
-import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import AdditionalMedia from '../components/AdditionalMedia.astro';
 import { getProjects } from '../utils/projects';
 import { secondaryProjects } from '../data/secondary-projects';
 import { education, experiences, personal, skills } from '../data/career';
@@ -9,6 +9,8 @@ import { siteCopy as site } from '../data/site';
 import { assetPath } from '../utils/paths';
 
 const projects = await getProjects();
+const projectRange = `01—${String(projects.length).padStart(2, '0')}`;
+const archiveRange = `A—${String.fromCharCode(64 + secondaryProjects.length)}`;
 const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => role.trim());
 ---
 
@@ -32,7 +34,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
 
   <section id="projects" class="work-section shell scroll-section" aria-labelledby="selected-work-title">
     <header class="section-intro">
-      <p class="section-code">INDEX / 01—07</p>
+      <p class="section-code">INDEX / {projectRange}</p>
       <h2 id="selected-work-title">Selected Work</h2>
       <p>Robotics systems, control research, and engineering projects. Documentation is being expanded as evidence becomes available.</p>
     </header>
@@ -46,9 +48,9 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
 
   <section class="archive-section shell" aria-labelledby="archive-title">
     <header class="section-intro compact">
-      <p class="section-code">ARCHIVE / A—F</p>
+      <p class="section-code">ARCHIVE / {archiveRange}</p>
       <h2 id="archive-title">Additional Work</h2>
-      <p>Secondary project records from current source notes. Dedicated case studies may be added later.</p>
+      <p>Compact project records with direct visual evidence, retained separately from the selected case studies.</p>
     </header>
     <div class="archive-list">
       {secondaryProjects.map((project, index) => (
@@ -57,20 +59,14 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
           <div>
             <p class="mono-label">{project.category}</p>
             <h3>{project.title}</h3>
-            <p>{project.description}</p>
+            <p class:list={{ 'missing-detail': /details pending/i.test(project.description) }}>{project.description}</p>
           </div>
-          <p class="archive-tags">{project.tags.join(' · ')}</p>
-          <div class="archive-meta">
+          <div class="archive-details">
+            <p class="archive-tags">{project.tags.join(' · ')}</p>
             <span>{project.date}</span>
             <span>{project.status}</span>
-            {project.image ? (
-              <img class="archive-image" src={assetPath(project.image)} alt={project.imageAlt ?? project.title} width="400" height="240" loading="lazy" />
-            ) : (
-              <div class="archive-placeholder">
-                <MediaPlaceholder label="PROJECT IMAGE PENDING" ratio="standard" index={String.fromCharCode(65 + index)} />
-              </div>
-            )}
           </div>
+          <AdditionalMedia media={project.media} label={project.title} index={String.fromCharCode(65 + index)} />
         </article>
       ))}
     </div>

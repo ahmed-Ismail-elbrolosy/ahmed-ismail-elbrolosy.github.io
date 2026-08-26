@@ -15,5 +15,8 @@
     "@types/node": "^24.10.1",
     "astro": "^7.2.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "plyr": "^3.8.4"
   }
 }

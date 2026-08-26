@@ -1,0 +1,28 @@
+---
+import { assetPath } from '../utils/paths';
+
+interface Props {
+  src: string;
+  label: string;
+  caption: string;
+  index?: string;
+  showCaption?: boolean;
+}
+
+const { src, label, caption, index, showCaption = true } = Astro.props;
+const documentUrl = assetPath(src);
+---
+
+<figure class="project-document">
+  <div class="document-frame">
+    {index && <span class="media-index">{index}</span>}
+    <iframe src={documentUrl} title={label} loading="lazy"></iframe>
+  </div>
+  {showCaption && (
+    <figcaption>
+      <strong>{label}</strong>
+      <span>{caption}</span>
+      <a href={documentUrl} target="_blank" rel="noreferrer">Open PDF ↗</a>
+    </figcaption>
+  )}
+</figure>

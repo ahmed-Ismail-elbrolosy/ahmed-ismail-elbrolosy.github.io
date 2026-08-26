@@ -1,0 +1,53 @@
+---
+import { assetPath } from '../utils/paths';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import VideoPlayer from './VideoPlayer.astro';
+import DocumentEmbed from './DocumentEmbed.astro';
+
+type Media = string | {
+  type: 'image';
+  src: string;
+  alt?: string;
+  label: string;
+  caption: string;
+} | {
+  type: 'video';
+  src: string;
+  label: string;
+  caption: string;
+  poster?: string;
+  ratio?: 'wide' | 'landscape' | 'portrait' | 'cinematic';
+  silent?: boolean;
+  captions?: { src: string; label: string; language: string };
+} | {
+  type: 'document';
+  src: string;
+  label: string;
+  caption: string;
+};
+
+interface Props {
+  media: Media;
+  ratio?: 'wide' | 'standard' | 'square';
+  index?: string;
+  showCaption?: boolean;
+}
+
+const { media, ratio = 'wide', index, showCaption = true } = Astro.props;
+---
+
+{typeof media === 'string' ? (
+  <MediaPlaceholder label={media} ratio={ratio} index={index} />
+) : media.type === 'video' ? (
+  <VideoPlayer {...media} index={index} showCaption={showCaption} />
+) : media.type === 'document' ? (
+  <DocumentEmbed {...media} index={index} showCaption={showCaption} />
+) : (
+  <figure class:list={['project-image', `media-${ratio}`]}>
+    <div class="project-image-frame">
+      {index && <span class="media-index">{index}</span>}
+      <img src={assetPath(media.src)} alt={media.alt ?? ''} loading="lazy" />
+    </div>
+    {showCaption && <figcaption><strong>{media.label}</strong><span>{media.caption}</span></figcaption>}
+  </figure>
+)}

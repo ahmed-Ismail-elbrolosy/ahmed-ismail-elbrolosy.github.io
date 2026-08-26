@@ -2,12 +2,11 @@
 
 ## Site status
 
-Dedicated project page
+> remove it completly from the portofolio not my proudest
 
 ## Summary
 
-Reverse engineering and PID control of a linear actuator using LabVIEW.
-
+Reverse engineering and PD control of an old linear actuator using LabVIEW and reed-switch rotation feedback.
 ## Date
 
 To be documented
@@ -18,16 +17,16 @@ To be documented
 
 ## Technologies
 
-LabVIEW, PID control
+LabVIEW, PD control, reed-switch feedback
 
 ## Overview
 
-A reverse-engineering and controller-development project for a linear actuator.
+A reed-switch encoder counted motor rotations. LabVIEW compared the accumulated feedback with the requested target and drove the actuator from the resulting error, forming a negative-feedback position loop.
 
 ## Characterization and control
 
-Add actuator characterization, hardware interface, LabVIEW implementation, PID tuning, and experimental response evidence here.
+The controller used the proportional and derivative terms of a PID structure. Integral action was unnecessary for this application, so the implemented controller remained PD rather than adding complexity without a demonstrated need.
 
 ## Notes for website update
 
-Do not publish numerical claims until measurements and plots are added to this folder.
+The supplied report may be used as supporting documentation. Do not publish numerical performance claims until the corresponding measurements and plots are independently verified.

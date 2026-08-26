@@ -3,9 +3,10 @@ import type { Project } from '../utils/projects';
 import BaseLayout from './BaseLayout.astro';
 import ProjectHeader from '../components/ProjectHeader.astro';
 import ProjectSection from '../components/ProjectSection.astro';
-import MediaPlaceholder from '../components/MediaPlaceholder.astro';
+import ProjectMedia from '../components/ProjectMedia.astro';
 import ProjectNavigation from '../components/ProjectNavigation.astro';
 import ProjectSubnav from '../components/ProjectSubnav.astro';
+import CaseStudyIndex from '../components/CaseStudyIndex.astro';
 
 interface Props {
   project: Project;
@@ -14,6 +15,9 @@ interface Props {
 }
 
 const { project, previous, next } = Astro.props;
+const chapterId = (title: string, index: number) =>
+  `chapter-${index + 1}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+const chapters = project.data.sections.map((section, index) => ({ id: chapterId(section.title, index), title: section.title }));
 ---
 
 <BaseLayout title={project.data.title} description={project.data.description}>
@@ -21,11 +25,12 @@ const { project, previous, next } = Astro.props;
     <ProjectSubnav currentProject={project} />
     <ProjectHeader project={project} />
     <div class="project-hero shell">
-      <MediaPlaceholder label={project.data.heroMedia ?? 'PROJECT MEDIA'} ratio="wide" index={`P.${project.data.order.toString().padStart(2, '0')}`} />
+      <ProjectMedia media={project.data.heroMedia} ratio="wide" index={`P.${project.data.order.toString().padStart(2, '0')}`} />
     </div>
+    <CaseStudyIndex chapters={chapters} />
     <div class="project-sections shell">
       {project.data.sections.map((section, index) => (
-        <ProjectSection number={index + 1} {...section} />
+        <ProjectSection number={index + 1} id={chapters[index].id} {...section} />
       ))}
     </div>
     <section class="repository-block shell" aria-labelledby="repository-title">

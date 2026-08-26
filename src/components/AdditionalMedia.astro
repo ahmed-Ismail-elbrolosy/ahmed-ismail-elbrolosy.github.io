@@ -1,0 +1,67 @@
+---
+import type { SecondaryMedia } from '../data/secondary-projects';
+import { assetPath } from '../utils/paths';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+
+interface Props {
+  media?: SecondaryMedia;
+  label: string;
+  index: string;
+}
+
+const { media, label, index } = Astro.props;
+---
+
+<div class="archive-media">
+  {!media ? (
+    <MediaPlaceholder label="PROJECT MEDIA PENDING" ratio="standard" index={index} />
+  ) : media.type === 'image' ? (
+    <div class="archive-media-frame">
+      <img src={assetPath(media.src)} alt={media.alt} width="800" height="600" loading="lazy" />
+    </div>
+  ) : (
+    <div class="archive-media-frame archive-video-frame">
+      <video
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        poster={assetPath(media.poster)}
+        aria-label={media.label ?? label}
+        data-loop-preview
+      >
+        <source src={assetPath(media.src)} type="video/mp4" />
+      </video>
+      <button class="archive-video-toggle" type="button">Pause motion</button>
+    </div>
+  )}
+  {media && <p class="archive-media-caption">{media.caption}</p>}
+</div>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLVideoElement>('[data-loop-preview]').forEach((video) => {
+    if (video.dataset.loopReady) return;
+    video.dataset.loopReady = 'true';
+    video.muted = true;
+
+    const button = video.parentElement?.querySelector<HTMLButtonElement>('.archive-video-toggle');
+    const updateButton = () => {
+      if (!button) return;
+      const paused = video.paused;
+      button.textContent = paused ? 'Play motion' : 'Pause motion';
+    };
+
+    if (!reduceMotion) video.play().catch(updateButton);
+    updateButton();
+
+    button?.addEventListener('click', () => {
+      if (video.paused) video.play().catch(updateButton);
+      else video.pause();
+      updateButton();
+    });
+    video.addEventListener('play', updateButton);
+    video.addEventListener('pause', updateButton);
+  });
+</script>

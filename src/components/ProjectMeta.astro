@@ -13,13 +13,14 @@ const items = [
   ['Role', role],
   ['Platform / Stack', stack.length ? stack.join(' · ') : 'To be documented'],
 ];
+const isMissingDetail = (value: string) => /to be (?:confirmed|documented)|\bpending\b/i.test(value);
 ---
 
 <dl class="project-meta">
   {items.map(([term, value]) => (
     <div>
       <dt>{term}</dt>
-      <dd>{value}</dd>
+      <dd class:list={{ 'missing-detail': isMissingDetail(value) }}>{value}</dd>
     </div>
   ))}
 </dl>

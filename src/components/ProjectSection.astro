@@ -1,28 +1,52 @@
 ---
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import ProjectMedia from './ProjectMedia.astro';
+
+type Media = string | {
+  type: 'image' | 'video' | 'document';
+  src: string;
+  label: string;
+  caption: string;
+  alt?: string;
+  poster?: string;
+  ratio?: 'wide' | 'landscape' | 'portrait' | 'cinematic';
+  silent?: boolean;
+  captions?: { src: string; label: string; language: string };
+};
 
 interface Props {
   number: number;
+  id: string;
   title: string;
   description: string;
-  media: string[];
+  body: string[];
+  media: Media[];
 }
 
-const { number, title, description, media } = Astro.props;
+const { number, id, title, description, body, media } = Astro.props;
 const sectionNumber = number.toString().padStart(2, '0');
+const isMissingDetail = (paragraph: string) => /remain(?:s)? pending|not yet been attached|still active validation|until the run is complete|replace placeholders|required model weights are absent|until .* is confirmed/i.test(paragraph);
 ---
 
-<section class="project-section" aria-labelledby={`section-${sectionNumber}`}>
+<section class="project-section" id={id} aria-labelledby={`${id}-title`}>
   <div class="section-heading">
     <span>{sectionNumber} /</span>
-    <h2 id={`section-${sectionNumber}`}>{title}</h2>
+    <h2 id={`${id}-title`}>{title}</h2>
   </div>
   <div class="section-content">
-    <p>{description}</p>
+    <div class="section-copy">
+      <div class="section-narrative">
+        <p class="section-lede">{description}</p>
+        {body.length > 0 && (
+          <div class="section-body">
+            {body.map((paragraph) => <p class:list={{ 'missing-detail': isMissingDetail(paragraph) }}>{paragraph}</p>)}
+          </div>
+        )}
+      </div>
+    </div>
     {media.length > 0 && (
       <div class:list={['section-media', { 'media-pair': media.length > 1 }]}>
-        {media.map((label, index) => (
-          <MediaPlaceholder label={label} ratio={media.length > 1 ? 'standard' : 'wide'} index={`${sectionNumber}.${index + 1}`} />
+        {media.map((item, index) => (
+          <ProjectMedia media={item} ratio={media.length > 1 ? 'standard' : 'wide'} index={`${sectionNumber}.${index + 1}`} />
         ))}
       </div>
     )}

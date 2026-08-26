@@ -1,0 +1,18 @@
+---
+interface Chapter {
+  id: string;
+  title: string;
+}
+
+interface Props { chapters: Chapter[] }
+const { chapters } = Astro.props;
+---
+
+<nav class="case-study-index shell" aria-label="Case study chapters">
+  <span>Case study</span>
+  <ol>
+    {chapters.map((chapter, index) => (
+      <li><a href={`#${chapter.id}`}><span>{String(index + 1).padStart(2, '0')}</span>{chapter.title}</a></li>
+    ))}
+  </ol>
+</nav>

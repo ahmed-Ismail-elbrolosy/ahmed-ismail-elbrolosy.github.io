@@ -76,7 +76,7 @@ Never use filesystem-absolute paths. `assetPath()` applies Astro's deployment ba
 
 - Personal details, education, and experience: `src/data/career.ts`
 - Homepage identity and positioning: `src/data/site.ts`
-- Nokia x ODC and Torphy currently have intentional blank entries marked `pending`.
+- Nokia x ODC and Trophy Technologies now have filled experience entries; AgriBot remains an intentionally brief archive record.
 - Homepage sections and section order: `src/pages/index.astro`
 - Homepage secondary archive: `src/data/secondary-projects.ts`
 - Design consistency rules: `docs/design-system.md`

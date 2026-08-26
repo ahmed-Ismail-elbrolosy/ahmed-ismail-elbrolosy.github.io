@@ -2,7 +2,7 @@
 
 ## Site status
 
-Additional Work
+Dedicated project page
 
 ## Summary
 
@@ -30,4 +30,4 @@ This folder currently contains navigation-system and scissor-lift motion videos.
 
 ## Notes for website update
 
-Add architecture, lift specifications, navigation evidence, and photographs before promoting this to a dedicated page.
+The project now has a dedicated case study using the navigation and scissor-lift videos. Replace remaining architecture and integrated-system placeholders as the ongoing build produces validated evidence. Add lift specifications, final-pose accuracy, payload tests, and photographs only when measured.

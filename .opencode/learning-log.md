@@ -83,3 +83,33 @@ Rebuilt the ROViro editorial note and live project record from the current simul
 Rejected the claim that Gazebo “guesses” reactions while Stonefish computes exact geometry physics. Gazebo uses collision geometry for buoyancy but normally configured hydrodynamic coefficients; Stonefish uses geometry-informed drag and surface buoyancy with simplified added-mass approximations. Neither is CFD.
 
 The companion workspace migrated to ROS 2 Lyrical, Gazebo Jetty, C++20, and Python 3.14. Keep portfolio result claims gated on reproducible captures, units, reference dimensions, and error calculations.
+
+## 2026-08-21 - Narrative Case Studies and Media
+
+Replaced one-paragraph project sections with long-form chapter content, stable chapter navigation, structured image/video evidence, and a bundled Plyr player. Promoted the autonomous lifting AGV into Selected Work and connected its navigation and lift videos. Generated local posters and preserved portrait/cinematic footage ratios.
+
+Reframed ROViro around Kami's compromised mechanics and the actual research question: what control can recover, at what actuator cost, and where mechanical redesign remains mandatory. Rewrote project hero decks as direct statements of stakes and ownership rather than category summaries.
+
+Rejected a permanent right-hand note rail after review. It filled whitespace with secondary text instead of strengthening the story. Section descriptions and body paragraphs now use the complete narrative column, with two full-width reading columns on desktop and one on mobile. Keep future additions in the main chronology unless they are genuine media evidence.
+
+## 2026-08-21 - Approved Vault Publication
+
+Published the approved Rocker-Bogie, Self-Balancing Robot, Inverted Pendulum, and GAN Gogh vault narratives as evidence-led website case studies. Added typed local PDF media with lazy iframe embeds and direct-open fallbacks, copied only selected public assets, promoted GAN Gogh from Additional Work to the project collection, and retained explicit ownership and validation boundaries where evidence is incomplete.
+
+Kept the Rocker-Bogie report internal because it contains conflicting hardware and performance claims; neither the source nor the generated site includes it. Used the confirmed GAN presentation permission despite its Samsung template notice. Rejected unsupported controller results, model-to-simulation comparisons, training reproducibility claims, and inferred individual roles.
+
+Remember: vault approval precedes publication. Treat reports as factual sources rather than automatic downloads, publish only explicitly cleared documents, and preserve unresolved contribution or quantitative-result gaps until primary evidence is supplied.
+
+## 2026-08-21 - Missing-Detail Signals
+
+Added a dedicated high-contrast red state for information that still needs evidence or user confirmation. It now marks unconfirmed project roles, absent validation or model artifacts, pending repositories and technologies, media placeholders, incomplete archive records, and reserved experience entries.
+
+Kept documented failures and negative engineering results in the normal text color. Those are project evidence, not missing content. Future unresolved copy should use the existing explicit pending/confirmation language so the renderer can identify it without making all limitations look unfinished.
+
+## 2026-08-22 - Portfolio Placement and Media Tiers
+
+Standardized Selected Work within two intentional tiers: featured cards retain their larger hierarchy while every card in each tier now shares a fixed media ratio, bounded copy, and aligned action area. Expanded Additional Work into large-media rows, added a compressed ten-second muted AGV loop with pause and reduced-motion behavior, and replaced placeholders with the supplied foldable-box image.
+
+Added `porto_vault/experiences.md` plus homepage visibility and project placement tables in `main.md`. Project placement uses one exclusive `none`, `selected`, or `additional` value; changing placement never deletes the project folder. Trash Collector remains selected and gained its supplied detection/build media. Robotino, Linear Actuator, ROViro, and Rocker-Bogie records now reflect the latest evidence and corrections.
+
+Rejected real GIF conversion because MP4 is smaller, clearer, pausable, and accessibility-compatible. Keep full source recordings in the vault and publish short optimized previews on the homepage.

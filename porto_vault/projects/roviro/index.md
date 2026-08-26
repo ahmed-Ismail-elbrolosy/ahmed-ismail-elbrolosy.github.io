@@ -24,7 +24,7 @@ The current vehicle is intentionally useful as a difficult control case. Its mas
 
 ## Implemented simulation platform
 
-The current workspace models Kami in ROS 2 and Gazebo with seven thrusters, seven cameras, buoyancy, hydrodynamic drag, IMU data, odometry, grippers, ROS-Gazebo bridges, and ArduSub-oriented control mappings. The platform is migrating from ROS 2 Jazzy and Gazebo Harmonic to ROS 2 Lyrical Luth and Gazebo Jetty on Ubuntu 26.04.
+The current workspace models Kami in ROS 2 and Gazebo with seven thrusters, seven cameras, buoyancy, hydrodynamic drag, IMU data, odometry, grippers, ROS-Gazebo bridges, and ArduSub-oriented control mappings. The platform now targets ROS 2 Lyrical Luth and Gazebo Jetty on Ubuntu 26.04.
 
 The intended physical stereo sensor is a ZED2i. The hardware is currently remote, so development and validation are simulation-first. The simulation pipeline reproduces the intended media topology without claiming that the Gazebo plugin itself is hardware-ready ZED code.
 
@@ -74,3 +74,10 @@ Replace placeholders only with captures from the working system. Add quantitativ
 - [Stonefish theory and hydrodynamic approximations](https://github.com/patrykcieslak/stonefish/blob/master/docs/theory.rst)
 - [Project DAVE documentation](https://field-robotics-lab.github.io/dave.doc/)
 - [ROS 2 Lyrical Luth release](https://docs.ros.org/en/lyrical/Releases/Release-Lyrical-Luth.html)
+
+
+> new updates 26th august
+> after migrating to lyrical luth with jetty, i tried controlling kami with ardusub but i do not know if it is gonna work directly or not because it is unsemmetric and needs more tuning, so to confirm on the vslam and the conventional control stack i use bluerov2_heavy with attaching the same cameras layout and for control i used my phone with controlling it over wifi, because my laptop resources got used that i even dropped the idea of runnign a live vslam (sgm not deep model) i stored a long run then i replayed it with reduced rate so that my laptop can preform better stereo camera pov is 1280*540 i know that is not a standard but i needed it to be wide and i did not need to see every thing in the height actually so i reduced it from 720 to save some resources in the future runs about 25% approx, any way i replay it with 0.3 rate and downscale 2. then i use rerun to view the camera feed and plot the angle change and another for heave, ardusub already has a hold_alt mode and stableizer but that to evaluate my future customized control, also rerun offers a 3d view for the trajectory and the point cloud of the rtab.
+> currently i do not have an updated version of the phone control but i will add an older one for now,
+> the project folders are there "/home/orca/prjs/ROV/vsim_ws/" so feel free to go there discover the docs and the code to provide a proper and correctly decumented data for the project
+> as

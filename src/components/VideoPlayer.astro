@@ -1,0 +1,90 @@
+---
+import 'plyr/dist/plyr.css';
+import { assetPath } from '../utils/paths';
+
+interface Props {
+  src: string;
+  label: string;
+  caption: string;
+  poster?: string;
+  ratio?: 'wide' | 'landscape' | 'portrait' | 'cinematic';
+  silent?: boolean;
+  captions?: {
+    src: string;
+    label: string;
+    language: string;
+  };
+  index?: string;
+  showCaption?: boolean;
+}
+
+const { src, label, caption, poster, ratio = 'wide', silent = false, captions, index, showCaption = true } = Astro.props;
+---
+
+<figure class:list={['project-video', `video-${ratio}`]}>
+  <div class="video-frame">
+    {index && <span class="video-index">{index}</span>}
+    <video
+      class="js-project-player"
+      controls
+      playsinline
+      preload="metadata"
+      poster={poster ? assetPath(poster) : undefined}
+      aria-label={label}
+      data-silent={silent ? 'true' : undefined}
+      data-has-captions={captions ? 'true' : undefined}
+    >
+      <source src={assetPath(src)} type="video/mp4" />
+      {captions && (
+        <track
+          kind="captions"
+          src={assetPath(captions.src)}
+          srclang={captions.language}
+          label={captions.label}
+          default
+        />
+      )}
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+  {showCaption && (
+    <figcaption>
+      <strong>{label}</strong>
+      <span>{caption}</span>
+      {silent && <span class="media-audio-note">Silent video</span>}
+    </figcaption>
+  )}
+</figure>
+
+<script>
+  import Plyr from 'plyr';
+  import iconUrl from '../../node_modules/plyr/dist/plyr.svg?url';
+
+  document.querySelectorAll<HTMLVideoElement>('.js-project-player').forEach((element) => {
+    if (element.dataset.playerReady) return;
+    element.dataset.playerReady = 'true';
+    const silent = element.dataset.silent === 'true';
+    const hasCaptions = element.dataset.hasCaptions === 'true';
+    const controls = [
+      'play-large',
+      'play',
+      'progress',
+      'current-time',
+      'duration',
+      ...(!silent ? ['mute', 'volume'] : []),
+      ...(hasCaptions ? ['captions'] : []),
+      'settings',
+      'pip',
+      'fullscreen',
+    ];
+
+    new Plyr(element, {
+      autoplay: false,
+      iconUrl,
+      keyboard: { focused: true, global: false },
+      controls,
+      settings: hasCaptions ? ['captions', 'speed'] : ['speed'],
+      speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] },
+    });
+  });
+</script>
