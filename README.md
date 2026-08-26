@@ -31,7 +31,7 @@ npm run preview
 
 ```text
 .github/workflows/deploy.yml  GitHub Pages workflow
-porto_vault/                  Local editorial notes (Markdown ignored by Git)
+porto_vault/                  Local editorial handoff (ignored by Git)
 public/                       Replaceable images, videos, diagrams, and resume
 scripts/check-links.mjs       Generated-site internal link validator
 src/components/               Shared UI and project components

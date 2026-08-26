@@ -3,10 +3,9 @@ dist/
 .astro/
 .DS_Store
 
-# Editorial source notes stay local; normalized website content lives in src/.
-/porto_vault/**/*.md
+# Editorial source material stays local; normalized website content lives in src/ and public/.
+/porto_vault/
+/pics/
 
 # Local tooling and raw icon handoff files are not deployment inputs.
 /.serena/
-/pics/skills/
-porto_vault/projects/roviro/attachment/fulltime_run2_record.mp4
