@@ -36,7 +36,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
     <header class="section-intro">
       <p class="section-code">INDEX / {projectRange}</p>
       <h2 id="selected-work-title">Selected Work</h2>
-      <p>Robotics, controls, and mechanism projects. Each record separates implemented work, observed results, and unverified targets.</p>
+      <p>Robotics, control systems, and mechatronic design projects spanning mobile navigation, underwater perception, embedded firmware, and classical/optimal control.</p>
     </header>
     <div class="featured-work">
       {projects.filter((project) => project.data.featured).map((project) => <ProjectPreview project={project} featured />)}

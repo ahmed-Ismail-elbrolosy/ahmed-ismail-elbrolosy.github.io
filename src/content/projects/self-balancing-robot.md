@@ -34,7 +34,7 @@ sections:
   - title: Experimental Results & Observed Limitations
     description: The prototype achieves qualitative upright stabilization with visible stationary oscillation.
     body:
-      - "No settling time, steady-state angle error, disturbance rejection bandwidth, maximum recoverable perturbation, or control effort metric is claimed — synchronized pitch and command telemetry was not recorded."
+      - "Quantitative performance metrics (settling time, steady-state error, disturbance rejection) were not recorded during the course project. The demonstration video provides qualitative evidence of upright stabilization with visible oscillation."
       - "The project established a practical scope constraint: instrument and validate the core feedback loop before adding perception or autonomy layers, and select actuators for dynamic bandwidth rather than nominal torque specifications alone."
     media:
       - type: video
