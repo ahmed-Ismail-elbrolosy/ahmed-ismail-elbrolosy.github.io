@@ -2,7 +2,7 @@
 order: 4
 title: Rocker-Bogie Rover
 navTitle: Rocker-Bogie Rover
-description: A five-person team developed a six-wheel PVC rover from a SolidWorks articulation study through physical stair and incline tests.
+description: "A six-wheel PVC rover: SolidWorks articulation study, passive rocker-bogie linkage fabrication, and physical stair and incline traversal validation."
 category: School Project / Robotics
 year: May 2025
 type: MTE 321 project-based learning
@@ -13,68 +13,65 @@ heroMedia:
   src: "project-assets/Rocker-Bogie/WhatsApp Image 2026-08-14 at 4.09.40 PM (1).jpeg"
   alt: Completed six-wheel PVC rocker-bogie rover viewed from the side
   label: Completed rover
-  caption: Six-wheel PVC prototype used for stair ascent, descent, and incline trials.
+  caption: Six-wheel PVC prototype used for stair ascent, descent, and incline traversal trials.
 sections:
-  - title: Core Objective & Constraints
-    description: Build an articulated six-wheel chassis that could negotiate repeated height changes without a conventional sprung suspension.
+  - title: Design Objective & Constraints
+    description: Convert coupled rocker-bogie linkage geometry into a low-cost physical platform capable of negotiating stair-height obstacles without sprung suspension.
     body:
-      - The five-person course team had to convert coupled rocker-bogie geometry into a low-cost physical platform suitable for a stair-climbing competition.
-      - PVC compliance, servo synchronization, wheel clearance, traction, impact loading, and limited fabrication precision were physical constraints absent from the CAD animation.
-  - title: System Architecture & Schematics
-    description: Passive rocker-bogie articulation maintains wheel contact while six wheel-mounted servos provide differential drive.
+      - "The five-person course team designed a passive rocker-bogie suspension that maintains all six wheels in ground contact across step transitions, distributing load through coupled linkage geometry rather than springs or active control."
+      - "Physical constraints absent from the CAD model — PVC compliance under load, servo torque mismatch, wheel-surface traction variation, and fabrication tolerances — drove iterative modifications during the build phase."
+  - title: System Architecture & Mechanical Design
+    description: Passive rocker-bogie articulation maintains wheel contact while six wheel-mounted servos provide differential drive through an ESP8266 wireless interface.
     body:
-      - The structure uses PVC links and reinforced loaded joints. Custom adapters connect servo horns to the wheels, and a buck converter regulates the servo supply.
-      - An ESP8266 provides the wireless interface and differential-steering commands. The final wheel diameter is 13 cm after smaller wheels failed to provide sufficient obstacle clearance.
+      - "The chassis uses PVC links with reinforced loaded joints. Custom 3D-printed adapters couple servo horns to 13 cm wheels (upsized from the original design after smaller wheels failed to clear step edges). A buck converter regulates the servo power rail."
+      - "An ESP8266 provides wireless differential-steering commands. My contribution covered the SolidWorks kinematics study, electrical circuit design, and final mechanical assembly."
     media:
       - type: image
         src: "project-assets/Rocker-Bogie/WhatsApp Image 2026-08-14 at 4.09.40 PM.jpeg"
         alt: Rocker-bogie rover during assembly on a workshop bench
         label: Mechanical assembly
         caption: PVC links, pivots, wheel adapters, and mounted servos during fabrication.
-  - title: Control, Algorithm, or Mechanical Implementation
-    description: A SolidWorks Motion Study reduced linkage uncertainty before fabrication, then the physical build forced wheel and joint revisions.
+  - title: Kinematics Simulation & Pre-Fabrication Analysis
+    description: A SolidWorks Motion Study verified linkage articulation geometry before physical fabrication.
     body:
-      - The motion study checked articulation over separated obstacles. It did not model traction, frame flex, impacts, servo mismatch, or electrical loading.
-      - During assembly, the team reinforced high-load joints and replaced the original wheels. My contribution covered the SolidWorks study and analysis, final electrical circuit, and assembly.
+      - "The kinematic simulation checked rocker-bogie articulation angles over separated obstacles, confirming geometric clearance and link travel. It did not model traction, frame deflection, impact loading, or servo response — constraints that required iterative correction during the physical build."
     media:
       - type: video
         src: "project-assets/Rocker-Bogie/Simulation with motion study.mp4"
         label: SolidWorks motion study
-        caption: Pre-fabrication articulation study; not a physical traversal result.
+        caption: Pre-fabrication kinematic articulation study. Not a physical traversal result.
         poster: project-assets/Rocker-Bogie/motion-study-poster.jpg
         ratio: cinematic
         silent: true
-  - title: Quantitative Results & Failure Modes
-    description: Recorded trials show successful stair ascent, descent, and incline traversal; geometry, timing, and repeatability were not measured consistently.
+  - title: Mobility Demonstration & Traversal Validation
+    description: Physical traversal trials demonstrating stair ascent, descent, and incline negotiation.
     body:
-      - The videos verify individual successful runs and visible articulation under changing terrain. They do not establish stair dimensions, ramp angle, traversal time, success rate, or structural margin.
-      - Observed design risks were PVC flex at loaded joints, servo synchronization, insufficient initial wheel clearance, traction changes, and impact loads. Conflicting internal report values are excluded.
+      - "The recorded trials verify successful individual traversals with visible passive articulation under changing terrain geometry. Stair dimensions, ramp angle, traversal time, success rate, and structural margin were not measured consistently."
+      - "Observed failure risks during testing included PVC flex at loaded joints, servo synchronization lag, traction variation between wheel pairs, and impact loading at step edges."
     media:
       - type: video
         src: "project-assets/Rocker-Bogie/Stair climbing up.mp4"
         label: Stair ascent
-        caption: Qualitative evidence of a successful recorded ascent.
+        caption: Recorded stair ascent demonstrating passive rocker-bogie articulation.
         poster: project-assets/Rocker-Bogie/stair-up-poster.jpg
         ratio: portrait
         silent: true
       - type: video
         src: "project-assets/Rocker-Bogie/Stair climbing down.mp4"
         label: Stair descent
-        caption: Qualitative evidence of a successful recorded descent.
+        caption: Recorded stair descent with visible linkage compliance.
         poster: project-assets/Rocker-Bogie/stair-down-poster.jpg
         ratio: portrait
         silent: true
-  - title: Code, CAD & Documentation Links
-    description: The public record contains the CAD motion study and physical test media, not the contradictory internal report.
-    body:
-      - The incline recording provides an additional terrain baseline without claiming an angle inferred from the camera view.
-      - CAD source, ESP8266 firmware, circuit drawing, and raw test logs are not available as public links.
-    media:
       - type: video
         src: "project-assets/Rocker-Bogie/Moving on a ramp.mp4"
         label: Incline traversal
-        caption: Recorded incline run without an asserted ramp angle.
+        caption: Incline traversal without a measured ramp angle.
         poster: project-assets/Rocker-Bogie/ramp-poster.jpg
         ratio: portrait
         silent: true
+  - title: Documentation & Source Artifacts
+    description: The public record includes the kinematic simulation and physical test media.
+    body:
+      - "CAD source files, ESP8266 firmware, circuit schematics, and raw test logs are not published."
 ---

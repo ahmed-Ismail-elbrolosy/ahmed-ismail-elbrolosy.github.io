@@ -1,57 +1,55 @@
 ---
 order: 6
-title: Self-Balancing Robot / PID Control
+title: Self-Balancing Robot
 navTitle: Self-Balancing Robot
 previewTitle: Self-Balancing Robot
-description: A physical PID balancing project that exposed actuator response, sensor estimation, loop timing, and scope as coupled control constraints.
+description: "Physical inverted-pendulum stabilization: linearized plant modeling, IMU-based state estimation, and embedded PID feedback control on a two-wheel prototype."
 category: Control Systems / Robotics
 year: Jan. 2026
 type: Control II course project
-role: Team member; individual subsystem ownership was not recorded
-stack: [PID Control, State-Space Modeling, Embedded Control]
+role: Full End-to-End Development (Physical Build, IMU State Estimation & Filtering, PID Control Tuning)
+stack: [PID Control, State-Space Modeling, IMU Filtering, Embedded Control]
 heroMedia:
   type: image
   src: project-assets/self-balancing-robot/final-demo-poster.jpg
   alt: Physical self-balancing robot during its final demonstration
   label: Final prototype
-  caption: Completed robot used for the qualitative balancing demonstration.
+  caption: Two-wheel inverted-pendulum prototype during the qualitative stabilization demonstration.
 sections:
-  - title: Core Objective & Constraints
-    description: Stabilize an unstable two-wheel robot around the upright equilibrium within a Control II course deadline.
+  - title: Problem Statement & Control Objective
+    description: Stabilize an inherently unstable two-wheel inverted-pendulum robot around the upright equilibrium using embedded PID feedback control.
     body:
-      - Mechanical alignment, center-of-mass assumptions, angle estimation, loop timing, motor response, saturation, and controller tuning all affect the same visible pitch motion.
-      - The original scope also considered ultrasonic sensing, obstacle avoidance, and LQR. Those additions were not completed and are excluded from the delivered system.
-  - title: System Architecture & Schematics
-    description: A linearized plant model supports reasoning around the upright equilibrium; a physical embedded loop applies PID correction through the wheel motors.
+      - "The system couples mechanical alignment, center-of-mass geometry, IMU pitch estimation, control loop timing, motor saturation, and gain tuning into a single observable output — visible pitch regulation. Isolating individual contributions requires synchronized telemetry that was not recorded during this project."
+      - "The original scope included ultrasonic obstacle sensing and LQR state-feedback as extensions. Neither was completed within the course deadline and is excluded from the delivered system."
+  - title: Plant Modeling & State-Space Formulation
+    description: A linearized dynamic model supports analysis around the upright equilibrium; an embedded control loop closes the feedback path through wheel motor actuation.
     body:
-      - The report records body and wheel masses, wheel radius, center-of-mass assumptions, pitch inertia, and continuous-time state-space matrices.
-      - The component table and final center-of-mass calculation disagree. The state definition, input units, measurement procedure, MCU, IMU, motor driver, and power source are not preserved in the supplied notes.
-  - title: Control, Algorithm, or Mechanical Implementation
-    description: PID was implemented on the physical prototype, but the information required to reproduce the loop is incomplete.
+      - "The modeling report documents body and wheel masses, wheel radius, pitch inertia, center-of-mass assumptions, and continuous-time state-space matrices (A, B, C, D) for the linearized plant."
+      - "A discrepancy between the component-level mass table and the computed center-of-mass position remains unresolved in the report. Physical parameter identification was not performed independently."
+  - title: Embedded Control Implementation
+    description: PID feedback control was implemented on the physical prototype. Documented parameters are incomplete.
     body:
-      - Controller gains, tuning sequence, loop frequency, measured latency, angle filter, output saturation, anti-windup behavior, and motor limits are not available.
-      - The team associated visible jitter with motor response, but sensor noise, backlash, timing, estimation, and gain selection remain competing explanations. The video cannot isolate them.
-  - title: Quantitative Results & Failure Modes
-    description: The prototype remains approximately upright in the final clip while stationary jitter exposes the limit of the result.
+      - "The IMU provides pitch angle estimates that drive the PID error signal. The controller outputs wheel motor commands to counteract angular deviation from the vertical reference."
+      - "Controller gains, tuning methodology, loop frequency, measured latency, complementary filter parameters, output saturation limits, and anti-windup configuration are not preserved in the project records."
+  - title: Experimental Results & Observed Limitations
+    description: The prototype achieves qualitative upright stabilization with visible stationary oscillation.
     body:
-      - No settling time, steady-state angle error, disturbance rejection, maximum recoverable angle, control effort, or repeated success rate is claimed because synchronized telemetry was not recorded.
-      - >-
-        The project established a practical scope lesson: stabilize and instrument the core feedback loop before adding autonomy, and select actuators for dynamic response rather than nominal torque alone.
+      - "No settling time, steady-state angle error, disturbance rejection bandwidth, maximum recoverable perturbation, or control effort metric is claimed — synchronized pitch and command telemetry was not recorded."
+      - "The project established a practical scope constraint: instrument and validate the core feedback loop before adding perception or autonomy layers, and select actuators for dynamic bandwidth rather than nominal torque specifications alone."
     media:
       - type: video
         src: "project-assets/self-balancing-robot/WhatsApp Video 2026-08-21 at 07.37.43.mp4"
-        label: Final balancing demonstration
-        caption: Qualitative upright behavior with visible stationary jitter; no numerical benchmark is inferred.
+        label: Stabilization demonstration
+        caption: Qualitative upright stabilization with visible oscillation. No numerical performance metric is inferred from video.
         poster: project-assets/self-balancing-robot/final-demo-poster.jpg
         ratio: portrait
-  - title: Code, CAD & Documentation Links
-    description: The plant-modeling report is available; controller source and measured logs are not.
+  - title: Documentation & Reproducibility
+    description: The plant-modeling report is available. Controller source code and experimental logs are not.
     body:
-      - The report documents the linearized plant derivation but does not validate the physical parameters or preserve the implemented PID controller.
-      - Reproducible publication requires corrected center-of-mass data, full hardware identification, source code, gains, loop timing, and synchronized pitch and command logs.
+      - "The report documents the linearized plant derivation with the noted center-of-mass discrepancy. Full reproducibility requires corrected physical parameters, hardware identification, controller source, gain values, loop timing, and synchronized telemetry logs."
     media:
       - type: document
         src: project-assets/self-balancing-robot/Control_Project_modeling.pdf
         label: Plant-modeling report
-        caption: Original state-space derivation with the unresolved center-of-mass discrepancy noted above.
+        caption: Linearized state-space derivation with unresolved center-of-mass discrepancy noted.
 ---

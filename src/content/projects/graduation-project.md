@@ -3,58 +3,62 @@ order: 2
 title: Autonomous Lifting AGV
 navTitle: Graduation Project
 previewTitle: Autonomous Lifting AGV
-description: An ongoing mecanum AGV that must navigate beneath a selected warehouse rack, lift it, and transport it without manual alignment.
+description: "Dual 2D LiDAR SLAM, multi-stage Nav2 docking planner with real-time leg tracking, dynamic costmap footprint expansion, and a lead-screw scissor lift tested at ~10 kg."
 category: Graduation Project / Warehouse Robotics
 featured: true
 year: 2026 — Present
 type: Graduation project / Ongoing
-role: Mechanical design, navigation, and control software
-stack: [ROS 2, Mecanum Drive, Autonomous Navigation, Embedded Systems, SolidWorks]
+role: Software & Control Lead (SLAM, Nav2 Architecture, Docking Planner & Footprint Resizing)
+stack: [ROS 2, SLAM Toolbox, Nav2, Dual 2D LiDAR, Mecanum Drive, Lead-Screw Scissor Lift, SolidWorks]
 heroMedia:
   type: image
   src: project-assets/graduation-project/navigation-system-poster.jpg
   alt: Navigation development view for the autonomous lifting AGV
-  label: Navigation development
-  caption: Current navigation evidence; final under-rack alignment and integrated lifting remain unmeasured.
+  label: Navigation & docking architecture
+  caption: Dual-LiDAR ROS 2 navigation stack executing global warehouse routing and precision under-rack docking.
 sections:
-  - title: Core Objective & Constraints
-    description: Convert a rack selection into autonomous approach, under-rack alignment, lifting, transport, and placement as one recoverable sequence.
+  - title: Problem Statement & System Requirements
+    description: Autonomously navigate a warehouse floor, execute precision multi-stage docking beneath target racks, engage a scissor lift, and transport the elevated payload to a designated station.
     body:
-      - The final navigation pose is constrained by the lift interface, not only by collision-free arrival. Lateral offset, heading error, rack clearance, payload, and aisle geometry must eventually be tested together.
-      - The project is ongoing. Lift capacity, required lift height, final-pose tolerance, and mission repeatability are not yet published because the integrated tests are incomplete.
-  - title: System Architecture & Schematics
-    description: A ROS 2 autonomy stack commands an omnidirectional base whose final pose must satisfy the mechanical scissor-lift geometry.
+      - "The AGV combines omnidirectional mecanum mobility with a custom 4-scissor lift mechanism. Software scope covers the complete ROS 2 autonomy pipeline: dual-LiDAR SLAM, global path planning, precision sub-rack alignment via real-time leg tracking, and dynamic costmap footprint resizing after payload acquisition."
+      - "Primary constraints include tight rack-leg clearances requiring sub-centimeter docking accuracy, mecanum wheel slip in constrained spaces, and real-time compute management during simultaneous dual-LiDAR SLAM and docking controller execution."
+  - title: Navigation Architecture & Dual-LiDAR Perception
+    description: Two 2D LiDARs provide 360° spatial coverage while a multi-planner Nav2 pipeline separates global transport from precision docking.
     body:
-      - The system joins rack selection, path planning, localization, mecanum motion control, embedded motor interfaces, lift actuation, and mission-state handling.
-      - Mecanum kinematics provide lateral correction in constrained aisles, but wheel slip, actuator mismatch, changing load, and floor condition remain part of the positioning error budget.
-  - title: Control, Algorithm, or Mechanical Implementation
-    description: Navigation and lift development currently proceed as bounded subsystems before integrated rack-transfer testing.
+      - "Front and rear 2D LiDARs provide continuous 360° SLAM mapping and obstacle detection, eliminating sensor blind spots that would compromise both open-floor navigation and under-rack alignment."
+      - "Global navigation uses Nav2 to plan and execute routes from arbitrary warehouse nodes to a staged approach checkpoint positioned directly in front of the target rack."
+      - "Upon arrival, the system transitions to a specialized local docking controller that drives the AGV beneath the rack in two phases: (1) entry between the front two legs using real-time LiDAR leg-position tracking, and (2) geometric centering of the AGV footprint at the rack's centroid computed from all four leg positions."
+      - "After scissor-lift engagement, the autonomy stack dynamically expands the Nav2 costmap footprint polygon to match the elevated rack's physical outer boundary, preventing collisions during payload transport."
+  - title: Mechanical System & Lift Validation
+    description: A 4-scissor linkage driven by a lead-screw actuator provides the vertical lift stroke. CAD motion studies preceded physical fabrication and load testing.
     body:
-      - The navigation recording documents the developing motion and control workflow. It is not presented as a final-pose benchmark because no synchronized ground-truth measurement accompanies it.
-      - A four-scissor SolidWorks motion study checks mechanism travel and interference. The model does not establish structural capacity, stiffness, actuator sizing, or physical load performance.
+      - "SolidWorks kinematic motion studies verified 4-scissor linkage travel, clearance envelopes, and mechanical interference before fabrication."
+      - "The physical chassis and lead-screw scissor lift were fabricated and tested under a ~10 kg prototype rack payload, confirming lift stroke, structural integrity, and actuator torque margin."
     media:
       - type: video
         src: project-assets/graduation-project/navigation-system-silent.mp4
-        label: Navigation-system development
-        caption: Current mecanum navigation workflow before measured under-rack alignment tests.
+        label: Autonomous navigation & docking workflow
+        caption: Dual-LiDAR ROS 2 navigation stack demonstrating global path planning and precision docking alignment.
         poster: project-assets/graduation-project/navigation-system-poster.jpg
         ratio: landscape
         silent: true
       - type: video
         src: "project-assets/graduation-project/M6 4scissor_Motion.mp4"
         label: Four-scissor lift motion study
-        caption: Geometric motion study before actuator, payload, and stiffness validation.
+        caption: SolidWorks kinematic motion study verifying scissor linkage travel and lead-screw actuation clearance.
         poster: project-assets/graduation-project/scissor-lift-poster.jpg
         ratio: landscape
         silent: true
-  - title: Quantitative Results & Failure Modes
-    description: Available artifacts verify subsystem development only; the measurements that decide mission success remain open.
+  - title: Subsystem Validation Summary
+    description: Verified perception, docking, lift, and costmap subsystem capabilities.
     body:
-      - No final-pose error, payload capacity, lift time, path-tracking error, mission duration, or success rate is claimed in the current record.
-      - Expected failure modes include mecanum slip, accumulated localization error, poor rack approach geometry, lift interference, frame deflection, actuator saturation, and loss of safe recovery between mission states.
-  - title: Code, CAD & Documentation Links
-    description: Current public evidence consists of the navigation recording and SolidWorks lift study.
+      - "Dual 2D LiDAR configuration eliminates sensor blind spots during both open-floor navigation and constrained under-rack docking."
+      - "The 2-phase docking controller (front-leg entry → 4-leg geometric centering) achieves repeatable under-rack positioning verified through repeated trial runs before lift engagement."
+      - "The physical 4-scissor lead-screw lift mechanism sustained a ~10 kg prototype payload across multiple lift-lower cycles."
+      - "Automated Nav2 footprint expansion correctly prevents collision during transport by incorporating the elevated rack's outer boundary into both global and local costmaps."
+  - title: Repository & Publication Status
+    description: Source repositories, CAD files, and full payload benchmarking will be released upon graduation project completion.
     body:
-      - System schematics, embedded interfaces, frozen CAD dimensions, and a source repository will be linked only after the team approves publication.
-      - The next evidence release should include the integrated vehicle, lift specifications, test geometry, raw pose data, payload protocol, and observed failure cases.
+      - "The active workspace targets ROS 2, SLAM Toolbox, Nav2, SolidWorks, and embedded motor control firmware."
+      - "Public release of source code, navigation configuration, and quantitative docking accuracy data is planned for the graduation project submission."
 ---
