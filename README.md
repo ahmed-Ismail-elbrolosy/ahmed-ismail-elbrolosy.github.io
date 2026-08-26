@@ -56,7 +56,7 @@ To add a new major project:
 1. Create `porto_vault/projects/<project>/index.md` and add project attachments beside it.
 2. Fill the visible Markdown sections with evidence-backed details.
 3. Request a website update.
-4. Normalize the approved content into `src/content/projects/<slug>.md` or `src/data/secondary-projects.ts`.
+4. Normalize the approved content into `src/content/projects/<slug>.md` or `src/data/secondary-projects.ts`. When updating based on notes, retain raw user comments/notes at the end of the vault file for future reference.
 5. Copy only selected website assets into `public/`, then run checks and build.
 
 A normalized file in `src/content/projects/` automatically appears in the homepage overview, project sub-navigation, and previous/next sequence. Additional Work remains normalized in `src/data/secondary-projects.ts`.

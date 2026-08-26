@@ -114,4 +114,5 @@ Do not add:
 
 - When adding new sections, prefer extending the existing grid/rule system.
 - When adding media, replace placeholders with evidence-rich images, plots, videos, or diagrams.
+- When processing editorial notes from the vault, integrate findings into structured sections but preserve the user's raw notes/comments at the end of the file for reference.
 - When in doubt, choose the more restrained option.

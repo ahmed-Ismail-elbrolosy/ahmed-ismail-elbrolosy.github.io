@@ -113,3 +113,8 @@ Standardized Selected Work within two intentional tiers: featured cards retain t
 Added `porto_vault/experiences.md` plus homepage visibility and project placement tables in `main.md`. Project placement uses one exclusive `none`, `selected`, or `additional` value; changing placement never deletes the project folder. Trash Collector remains selected and gained its supplied detection/build media. Robotino, Linear Actuator, ROViro, and Rocker-Bogie records now reflect the latest evidence and corrections.
 
 Rejected real GIF conversion because MP4 is smaller, clearer, pausable, and accessibility-compatible. Keep full source recordings in the vault and publish short optimized previews on the homepage.
+
+## 2026-08-26 - Raw Notes Preservation Rule
+
+Established rule for processing user notes and editorial updates in vault files: when scanning raw user notes or scratchpad additions (such as blockquotes or trailing comments in project notes), extract and normalize the facts into the structured sections/codebase, but always retain the user's raw notes and comments at the bottom of the file so they remain accessible for future context. Defined in `AGENTS.md`, `README.md`, and `docs/design-system.md`.
+
