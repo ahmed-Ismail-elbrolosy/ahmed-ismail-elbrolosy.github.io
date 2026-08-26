@@ -33,17 +33,15 @@ const chapters = project.data.sections.map((section, index) => ({ id: chapterId(
         <ProjectSection number={index + 1} id={chapters[index].id} {...section} />
       ))}
     </div>
-    <section class="repository-block shell" aria-labelledby="repository-title">
-      <div>
-        <p class="mono-label">Project source</p>
-        <h2 id="repository-title">Repository</h2>
-      </div>
-      {project.data.repository ? (
+    {project.data.repository && (
+      <section class="repository-block shell" aria-labelledby="repository-title">
+        <div>
+          <p class="mono-label">Source code</p>
+          <h2 id="repository-title">Repository</h2>
+        </div>
         <a class="button-link" href={project.data.repository}>View repository ↗</a>
-      ) : (
-        <span class="repository-pending">Repository link pending</span>
-      )}
-    </section>
+      </section>
+    )}
     <ProjectNavigation previous={previous} next={next} />
   </article>
 </BaseLayout>

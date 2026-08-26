@@ -1,59 +1,57 @@
 ---
-order: 8
+order: 7
 title: Self-Balancing Robot / PID Control
 navTitle: Self-Balancing Robot
 previewTitle: Self-Balancing Robot
-description: A Control II team project that turned an unstable robot into a direct lesson about motor response, sensing, timing, PID control, and the cost of expanding scope too early.
+description: A physical PID balancing project that exposed actuator response, sensor estimation, loop timing, and scope as coupled control constraints.
 category: Control Systems / Robotics
 year: Jan. 2026
 type: Control II course project
-role: Team member — individual contribution to be confirmed
+role: Team member; individual subsystem ownership was not recorded
 stack: [PID Control, State-Space Modeling, Embedded Control]
 heroMedia:
   type: image
   src: project-assets/self-balancing-robot/final-demo-poster.jpg
-  alt: Physical self-balancing robot prototype during its final demonstration
-  label: Final physical prototype
-  caption: The completed course-project robot used for the qualitative balancing demonstration.
+  alt: Physical self-balancing robot during its final demonstration
+  label: Final prototype
+  caption: Completed robot used for the qualitative balancing demonstration.
 sections:
-  - title: Why Balance Exposes Everything
-    description: An unstable plant makes mechanical, sensing, timing, and actuator assumptions visible in the same physical response.
+  - title: Core Objective & Constraints
+    description: Stabilize an unstable two-wheel robot around the upright equilibrium within a Control II course deadline.
     body:
-      - >-
-        The team selected a self-balancing robot to apply Control II concepts beyond an analytical exercise. A controller could only react to the attitude reported by the sensors and the motion the motors could actually produce.
-      - >-
-        That coupling made hardware selection part of the control problem. The project notes identify motor response speed and accuracy as major constraints during physical tuning.
-  - title: Modeling the Plant
-    description: The project report linearizes the robot around the upright equilibrium and records the state-space model used to reason about its pitch dynamics.
+      - Mechanical alignment, center-of-mass assumptions, angle estimation, loop timing, motor response, saturation, and controller tuning all affect the same visible pitch motion.
+      - The original scope also considered ultrasonic sensing, obstacle avoidance, and LQR. Those additions were not completed and are excluded from the delivered system.
+  - title: System Architecture & Schematics
+    description: A linearized plant model supports reasoning around the upright equilibrium; a physical embedded loop applies PID correction through the wheel motors.
     body:
-      - >-
-        The report documents body and wheel masses, wheel radius, center-of-mass assumptions, pitch inertia, and continuous-time matrices. The component table and the final center-of-mass value still need reconciliation before the model can be described as validated.
-      - >-
-        The original derivation is embedded here instead of being rewritten as a long page of equations.
-    media:
-      - type: document
-        src: project-assets/self-balancing-robot/Control_Project_modeling.pdf
-        label: Plant-modeling report
-        caption: Original model derivation and state-space record; model validation and the center-of-mass discrepancy remain open.
-  - title: Control Before Autonomy
-    description: PID balancing was the delivered core; sensor fusion, obstacle avoidance, and LQR expanded the concept beyond what the deadline allowed.
+      - The report records body and wheel masses, wheel radius, center-of-mass assumptions, pitch inertia, and continuous-time state-space matrices.
+      - The component table and final center-of-mass calculation disagree. The state definition, input units, measurement procedure, MCU, IMU, motor driver, and power source are not preserved in the supplied notes.
+  - title: Control, Algorithm, or Mechanical Implementation
+    description: PID was implemented on the physical prototype, but the information required to reproduce the loop is incomplete.
     body:
-      - >-
-        The project notes record a PID implementation, but the gains, loop frequency, filtering, saturation handling, and tuning sequence are not preserved in the supplied materials. Those details remain pending rather than being reconstructed from memory.
-      - >-
-        An ultrasonic sensor was added as part of an attempted broader sensing architecture with the IMU. The deadline prevented that fusion and the proposed obstacle-avoidance and LQR scope from becoming validated features.
-  - title: The Final Video Is Qualitative Evidence
-    description: The robot remains approximately upright in the final clip, while visible stationary jitter keeps the limitations of the result in view.
+      - Controller gains, tuning sequence, loop frequency, measured latency, angle filter, output saturation, anti-windup behavior, and motor limits are not available.
+      - The team associated visible jitter with motor response, but sensor noise, backlash, timing, estimation, and gain selection remain competing explanations. The video cannot isolate them.
+  - title: Quantitative Results & Failure Modes
+    description: The prototype remains approximately upright in the final clip while stationary jitter exposes the limit of the result.
     body:
+      - No settling time, steady-state angle error, disturbance rejection, maximum recoverable angle, control effort, or repeated success rate is claimed because synchronized telemetry was not recorded.
       - >-
-        The team considered the result acceptable for the course project. The clip does not establish settling time, disturbance rejection, steady-state error, or a maximum recoverable angle because no synchronized telemetry accompanies it.
-      - >-
-        The strongest lesson was practical: stabilize and measure the core loop before layering autonomy on top, and select actuators for dynamic response rather than nominal torque alone.
+        The project established a practical scope lesson: stabilize and instrument the core feedback loop before adding autonomy, and select actuators for dynamic response rather than nominal torque alone.
     media:
       - type: video
         src: "project-assets/self-balancing-robot/WhatsApp Video 2026-08-21 at 07.37.43.mp4"
         label: Final balancing demonstration
-        caption: Qualitative prototype footage showing upright behavior and the stationary jitter discussed in the project notes.
+        caption: Qualitative upright behavior with visible stationary jitter; no numerical benchmark is inferred.
         poster: project-assets/self-balancing-robot/final-demo-poster.jpg
         ratio: portrait
+  - title: Code, CAD & Documentation Links
+    description: The plant-modeling report is available; controller source and measured logs are not.
+    body:
+      - The report documents the linearized plant derivation but does not validate the physical parameters or preserve the implemented PID controller.
+      - Reproducible publication requires corrected center-of-mass data, full hardware identification, source code, gains, loop timing, and synchronized pitch and command logs.
+    media:
+      - type: document
+        src: project-assets/self-balancing-robot/Control_Project_modeling.pdf
+        label: Plant-modeling report
+        caption: Original state-space derivation with the unresolved center-of-mass discrepancy noted above.
 ---

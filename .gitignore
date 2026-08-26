@@ -2,3 +2,10 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# Editorial source notes stay local; normalized website content lives in src/.
+/porto_vault/**/*.md
+
+# Local tooling and raw icon handoff files are not deployment inputs.
+/.serena/
+/pics/skills/

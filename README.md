@@ -1,6 +1,6 @@
 # Ahmed Elbrolosy Engineering Portfolio
 
-Static systems-engineering and product-design portfolio built with Astro and TypeScript. It documents mechanical design, embedded systems, robotics, control, SLAM, and computer vision work.
+Static engineering portfolio built with Astro and TypeScript. Project pages use a common technical-case-study structure and separate demonstrated results from unverified targets.
 
 ## Local Development
 
@@ -31,7 +31,7 @@ npm run preview
 
 ```text
 .github/workflows/deploy.yml  GitHub Pages workflow
-porto_vault/                  Editable editorial handoff notes
+porto_vault/                  Local editorial notes (Markdown ignored by Git)
 public/                       Replaceable images, videos, diagrams, and resume
 scripts/check-links.mjs       Generated-site internal link validator
 src/components/               Shared UI and project components
@@ -45,11 +45,11 @@ src/content.config.ts         Project schema
 astro.config.ts               Static and GitHub Pages configuration
 ```
 
-The vault is an editorial handoff, not the website CMS. Edit `porto_vault/main.md` and each `porto_vault/projects/<project>/index.md`, then request a website update. The notes and attachments are reviewed, rewritten where needed, and manually transferred into normalized website sources under `src/` and `public/`.
+The vault is a local editorial handoff, not the website CMS. Vault Markdown is ignored by Git. Notes and attachments are reviewed, evidence-checked, and manually normalized into website sources under `src/` and `public/`.
 
 ## Add or Edit a Major Project
 
-Website project pages use normalized Markdown in `src/content/projects/`. Vault notes do not change the website automatically.
+Website project pages use tracked, normalized Markdown in `src/content/projects/`. These files are runtime content and are intentionally excluded from the vault ignore rule.
 
 To add a new major project:
 
@@ -63,10 +63,10 @@ A normalized file in `src/content/projects/` automatically appears in the homepa
 
 ## Replace Media Placeholders
 
-Current project entries provide labels to `MediaPlaceholder.astro`. To replace one:
+Project media is declared in each normalized content record. To add or replace evidence:
 
 1. Put media in `public/images/`, `public/videos/`, or `public/diagrams/`.
-2. Replace the corresponding `MediaPlaceholder` call in the shared layout, or extend project schema with a media source field.
+2. Update the corresponding `heroMedia` or section `media` record.
 3. Use semantic `<img>`, `<video>`, or `<figure>` markup with useful alt text or captions.
 4. Store public asset paths as root-relative values, for example `/images/robot.webp`, then render them through `assetPath()` so project-site deployment remains valid.
 
@@ -86,7 +86,7 @@ Organization logos are delivered as normalized WebP files. Add a root-relative `
 
 ## Navigation Model
 
-The sticky primary bar links only to homepage sections: Home, Projects, Experience, Education, Skills, and Contact. Dedicated project pages add a separate horizontal project strip. New major content should fit one of those homepage sections unless a strong information-architecture reason requires another primary item.
+The sticky primary bar links only to homepage sections: Home, Projects, About, Experience, Education, Skills, and Contact. Dedicated project pages add a separate horizontal project strip.
 
 The complete visual and interaction rules live in `docs/design-system.md`.
 

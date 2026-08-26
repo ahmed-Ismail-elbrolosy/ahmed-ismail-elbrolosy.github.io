@@ -1,68 +1,55 @@
 ---
-order: 9
+order: 8
 title: GAN Gogh
 navTitle: GAN Gogh
-description: A three-person Samsung Innovation Campus project that carried CycleGAN from unpaired landscape data to qualitative failure analysis and a Flask image-upload workflow.
+description: A three-person CycleGAN project for unpaired landscape-to-Monet translation, qualitative failure analysis, and Flask inference.
 category: Machine Learning / Computer Vision
 year: Nov. 2024
 type: Samsung Innovation Campus AI603 graduation project
-role: Team member — individual contribution to be confirmed
+role: Team member; individual subsystem ownership was not recorded
 stack: [CycleGAN, PyTorch, Flask, Kaggle]
 repository: https://github.com/ahmed-Ismail-elbrolosy/Gan-Gogh
 heroMedia:
   type: image
   src: project-assets/gan-gogh/frame_0001.png
-  alt: Landscape photograph transformed into a Monet-style image by the GAN Gogh model
+  alt: Landscape photograph transformed into a Monet-style image by CycleGAN
   label: Generated landscape
-  caption: A supplied CycleGAN output showing the project's Monet-style translation target.
+  caption: Qualitative CycleGAN output from the project pipeline.
 sections:
-  - title: Bound the Translation Problem
-    description: The project focused on one source domain of landscape photographs and one target domain of Monet paintings rather than arbitrary artistic generation.
+  - title: Core Objective & Constraints
+    description: Translate landscape photographs into one Monet-style target domain without paired source and painted images.
     body:
-      - >-
-        CycleGAN made that scope possible without requiring paired examples of the same scene in photographic and painted form. The team could train mappings between two collections while using cycle consistency to preserve enough source structure for reconstruction.
-      - >-
-        The narrow domain also made failure analysis clearer. Familiar landscape structure transferred more consistently than scenes containing objects or compositions outside the target distribution.
-  - title: Build the Full Pipeline
-    description: The workflow connected image preparation, bidirectional generators and discriminators, post-processing, and an inference interface.
+      - The bounded task used one photographic domain and one artistic domain rather than arbitrary style generation. Cycle consistency was used to preserve source structure across bidirectional translation.
+      - The three-person project did not record individual ownership in the available notes. No claim is made about my sole implementation of a subsystem.
+  - title: System Architecture & Schematics
+    description: The pipeline connects preprocessing, two generators, two discriminators, cycle-consistency training, post-processing, and a Flask upload interface.
     body:
-      - >-
-        The checked-in notebook resizes images to 256 by 256 pixels, normalizes them, and applies horizontal flipping. The presentation also describes random cropping, but that operation is not present in the repository implementation.
-      - >-
-        The repository records convolutional generators with residual blocks, domain discriminators, a Kaggle training workflow, model inference code, and a Flask upload interface.
-  - title: Compare the Source and Result
-    description: The supplied pair makes the transformation visible without substituting aesthetic judgment for a quantitative metric.
+      - The generator uses convolutional downsampling, residual blocks, and transposed-convolution upsampling. Domain discriminators distinguish generated images from examples in each target set.
+      - The notebook resizes to 256 × 256 pixels, normalizes inputs, and applies horizontal flips. Random cropping appears in the presentation but not in the checked-in implementation.
+  - title: Control, Algorithm, or Mechanical Implementation
+    description: The repository contains model code, a Kaggle notebook, sample outputs, and web inference code, but the retained training record is incomplete.
     body:
-      - >-
-        The model transfers color and texture toward the artistic domain while retaining the broad landscape composition. The current record does not include a user study or image-quality metric, so the output remains qualitative evidence.
+      - The notebook references Kaggle's GAN Getting Started data, limits the photo domain to 7,000 images, uses batch size 1 and a learning rate of 1e-5, and is configured for 25 epochs on a T4 environment.
+      - Retained outputs do not prove that all 25 epochs completed. The README says pretrained weights were used while the notebook sets LOAD_MODEL to false; no training-history claim resolves that contradiction.
+  - title: Quantitative Results & Failure Modes
+    description: Available results support qualitative domain comparison, not an image-quality or user-study benchmark.
+    body:
+      - Landscapes resembling the target distribution produced stronger visual transfer. Unfamiliar objects and scene structures produced weaker results, and the delivered interface supports only one artistic domain.
+      - The public Flask code requires a genM.pth.tar weights file that is absent from the repository, so inference is not reproducible from the published files alone.
     media:
       - type: image
         src: project-assets/gan-gogh/original-frame0028.png
-        alt: Original mountain landscape and flower-field photograph before style translation
-        label: Original photograph
-        caption: Source landscape supplied to the translation pipeline.
+        alt: Original mountain and flower-field landscape photograph
+        label: Source photograph
+        caption: Input to the unpaired translation pipeline.
       - type: image
         src: project-assets/gan-gogh/frame_0001.png
-        alt: Monet-style generated version of the mountain landscape and flower field
+        alt: Generated Monet-style mountain and flower-field landscape
         label: Generated result
-        caption: CycleGAN output for the corresponding landscape scene.
-  - title: The Weak Cases Matter
-    description: The team's conclusion separates where the model worked visually from where the bounded training domain became a limitation.
+        caption: Corresponding CycleGAN output; evaluated qualitatively.
+  - title: Code, CAD & Documentation Links
+    description: Source code is public; model weights and a reproducible completed-run record are not.
     body:
-      - >-
-        Results were stronger for landscape frames similar to the Monet examples and weaker when unfamiliar objects or scene structures appeared. The delivered model also exposed only one artistic domain rather than a selectable library of styles.
-      - >-
-        Future work would expand the data, add style domains, compare image-translation architectures, and define reproducible criteria for content preservation and style transfer.
-  - title: From Notebook to Upload Interface
-    description: A Flask application connected model inference to an interface that accepts an image and displays the original and transformed outputs.
-    body:
-      - >-
-        The public repository contains the application and interface code, but the required model weights are absent. The deployment therefore documents integration work without being reproducible from the repository alone.
-      - >-
-        The original team presentation is embedded as the project record rather than rewritten slide by slide.
-    media:
-      - type: document
-        src: project-assets/gan-gogh/gan-gough-presentation.pdf
-        label: GAN Gogh project presentation
-        caption: Original Samsung Innovation Campus team presentation covering the workflow, architecture, outputs, deployment, and retrospective.
+      - The linked repository contains the notebook, architecture code, sample images, Flask application, and interface files.
+      - The Samsung-branded presentation was removed from this site because its template prohibits reproduction without permission. A clean project-owned report is required before the slides can be republished.
 ---

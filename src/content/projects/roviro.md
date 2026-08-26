@@ -2,90 +2,51 @@
 order: 1
 title: ROViro
 navTitle: ROViro
-description: Kami began as a club ROV with difficult mechanics. I turned those problems into a research platform for control, underwater perception, and operator systems.
-category: Marine Robotics / Research Platform
+description: A simulation-first marine robotics platform for testing underwater control, operator video, and stereo reconstruction before hardware access.
+category: Marine Robotics / Research
 featured: true
 year: 2025 — Present
 type: Independent research project
 role: Former Software Lead / Independent Researcher
-stack: [ROS 2 Lyrical, Gazebo Jetty, C++20, GStreamer, NVENC, WebRTC, MAVLink]
-heroMedia: COCKPIT OPERATOR VIEW
+stack: [ROS 2 Lyrical, Gazebo Jetty, C++20, Python, ArduSub, RTAB-Map, GStreamer, WebRTC, Rerun]
+heroMedia:
+  type: image
+  src: project-assets/roviro/thumbnail.png
+  alt: BlueROV2 Heavy model beside a submerged aircraft wreck in the Gazebo test world
+  label: ROViro simulation platform
+  caption: BlueROV2 Heavy validation model in the underwater Gazebo scene used for control and stereo-mapping runs.
 sections:
-  - title: The Project Refused to Stay Small
-    description: >-
-      ROViro began inside the EJUST Robotics Club, where my responsibility was software. The vehicle gave me a much larger question than the original assignment.
+  - title: Core Objective & Constraints
+    description: Determine which control and perception results survive a mechanically inefficient ROV layout, limited workstation resources, and remote access to the intended stereo hardware.
     body:
-      - >-
-        The club version had no simulation-first workflow and no serious control research. Once I started asking how the vehicle would behave underwater, the work stopped fitting inside a software task. Hydrodynamics, mass distribution, thruster placement, sensing, networking, and mechanical design all became part of the same problem.
-      - >-
-        I kept the project after my team role ended because it exposed exactly what I did not know. ROViro became the place where I could move from integrating software to thinking like a mechatronics engineer: one system, with every discipline allowed to challenge the others.
-    media: []
-  - title: Kami Is the Research Problem
-    description: >-
-      Kami is heavy, mechanically inefficient, and burdened by thruster placement that makes stable motion harder than it should be. I did not want the simulation to hide that.
+      - Kami is a seven-thruster ROV whose mass distribution and actuator placement make control allocation non-trivial. Mechanical redesign remains the baseline; the research question is how much behavior feedback and allocation can recover, and at what control effort.
+      - The intended ZED2i hardware is remote, so current development is simulation-first. Results from Gazebo are treated as software and experiment validation, not proof of physical underwater performance.
+  - title: System Architecture & Schematics
+    description: ROS 2 coordinates control and perception while operator video uses a separate H264 transport path to avoid loading the control graph with display traffic.
     body:
-      - >-
-        The correct first answer to a poor vehicle is usually mechanical redesign. Better mass distribution and better actuator placement reduce wasted thrust before a controller has to intervene. ROViro keeps that truth visible rather than presenting control software as magic.
-      - >-
-        My research question starts after that baseline: when mission constraints force an awkward geometry, how much behavior can control allocation and feedback recover, what does that recovery cost the thrusters, and where does the design cross the line from difficult to indefensible?
-    media: [KAMI IN GAZEBO]
-  - title: A Cockpit Without Choking ROS
-    description: >-
-      The intended physical stereo sensor is a ZED2i, but the hardware is remote. I built the simulation media path so operator video could be developed and stressed without waiting for the vehicle.
-    body:
-      - >-
-        Raw ROS image bridges still exist for perception tools. I deliberately do not rely on them for the operator feed. Seven cameras at useful resolutions can turn the ROS graph into a video transport problem, so the cockpit path leaves that traffic outside the control network.
-      - >-
-        A custom C++ Gazebo plugin pairs the stereo frames, creates the side-by-side image, and serves eight H264 streams through GStreamer. MediaMTX converts the local RTSP feeds to WebRTC for Blue Robotics Cockpit. On the workstation, all production stream configurations are probed together and use NVENC when the complete set can initialize; x264 remains the fallback.
+      - The Gazebo model includes seven thrusters, seven cameras, buoyancy, configured hydrodynamic terms, IMU, odometry, grippers, ros_gz bridges, and ArduSub-oriented actuator mappings.
+      - A custom C++ Gazebo plugin pairs stereo frames and sends H264 through GStreamer to an RTSP server. MediaMTX exposes WebRTC streams to Blue Robotics Cockpit; raw ROS images remain available only where perception nodes require them.
     media:
       - type: image
         src: project-assets/roviro/system-architecture.png
-        alt: ROViro system architecture spanning vehicle control, custom control, Gazebo simulation, stereo mapping, streaming, and the ground-station cockpit
+        alt: ROViro architecture connecting simulation, vehicle control, stereo mapping, streaming, and the operator station
         label: System architecture
-        caption: The supplied architecture overview places vehicle control, simulation, allocation, streaming, operator, and mapping components in one working-system map.
-  - title: Seven Thrusters, One Argument
-    description: >-
-      Kami exposes seven command paths and seven ArduPilot mappings. The next control experiments need to show what each thruster is being asked to do, not merely whether the vehicle moved.
+        caption: Separate vehicle-control, simulation, stereo-processing, video-transport, and operator-interface paths.
+  - title: Control, Perception & Implementation
+    description: Current experiments separate the difficult Kami allocation problem from validation of the conventional ArduSub and stereo-mapping pipeline.
     body:
-      - >-
-        A real-time terminal view is being built around commanded output so saturation, imbalance, and control effort can be seen while the vehicle responds. That distinction matters: a command is not measured thrust, and the page will not label it as feedback until a calibrated feedback signal exists.
-      - >-
-        This is where the mechanical question becomes visible in software. If stabilization continuously drives particular thrusters harder, the cost of compensating for the layout stops being an opinion and becomes something the experiment can expose.
-    media: [REAL-TIME THRUSTER COMMAND TUI]
-  - title: Reconstructing What the Cameras Saw
-    description: >-
-      The original perception mission was not simply to produce a point cloud. It was to recover an underwater target from stereo images and ask whether the reconstruction preserved a useful dimension.
+      - Direct ArduSub control of Kami remains under evaluation because its asymmetric seven-thruster geometry requires custom tuning. A BlueROV2 Heavy model carrying the same camera layout is therefore used to verify the standard control and VSLAM path before attributing failures to Kami.
+      - The BlueROV2 Heavy run used phone-based Wi-Fi control. ArduSub Stabilize and AltHold provide baseline attitude and heave behavior for later comparison with custom controllers.
+      - The mapping path records stereo data, replays it at 0.3× speed, applies 2× downscaling, and processes it with RTAB-Map. Rerun displays camera frames, attitude and heave traces, the estimated trajectory, and the reconstructed point cloud.
+  - title: Quantitative Results & Failure Modes
+    description: Resource limits produced a reproducible offline pipeline, but no control-accuracy or reconstruction-error claim is complete yet.
     body:
-      - >-
-        The pipeline being completed uses the simulated stereo pair with RTAB-Map and inspects the reconstruction in RViz. Closed-loop mapping matters because the camera revisits the same object while the vehicle moves, giving the map a chance to correct accumulated drift.
-      - >-
-        I will publish accuracy only after the full comparison is reproducible. A visually convincing cloud is not yet a measurement result.
-    media: [RTAB-MAP RECONSTRUCTION IN RVIZ]
-  - title: Measuring the Error, Not the Screenshot
-    description: >-
-      The dimensional test begins in Blender, where the source scene provides the reference, and ends in MeshLab, where the same feature is measured in the reconstruction.
+      - Stereo frames were reduced from 1280 × 720 to 1280 × 540, cutting pixel count by 25% while retaining horizontal field of view. Processing then uses 2× downscaling and 0.3× replay because the workstation could not sustain the full simulator, control stack, and live stereo mapping together.
+      - Command traces are not measured thrust. Simulated trajectories are not physical vehicle accuracy. Reconstruction quality remains qualitative until Blender reference dimensions and MeshLab measurements are reported with absolute and percentage error.
+      - Gazebo provides ROS integration and configured marine dynamics; Stonefish is retained for later geometry-informed marine simulation comparison. Neither environment is treated as CFD or as an automatically calibrated model.
+  - title: Code, CAD & Documentation Links
+    description: The project record currently exposes the architecture and validation method; source publication and measured datasets remain separate release tasks.
     body:
-      - >-
-        The paired captures will show both numbers, the units, and the selected landmarks. The result will include absolute and percentage error rather than asking the reader to trust two similar-looking images.
-      - >-
-        This workflow is still active validation. Until the run is complete, the placeholders describe the evidence that belongs here without pretending the result already exists.
-    media: [REFERENCE DISTANCE IN BLENDER, RECONSTRUCTED DISTANCE IN MESHLAB]
-  - title: Why Gazebo, Then Stonefish
-    description: >-
-      Gazebo gave me the ROS 2 ecosystem I needed to build the whole machine. Stonefish became interesting when the research moved closer to marine-specific physics and sensing.
-    body:
-      - >-
-        Gazebo derives buoyancy from collision geometry and integrates cleanly with SDF, ros_gz, RViz, plugins, and existing robot tooling. Its standard marine dynamics normally depend on configured drag and added-mass coefficients; Project DAVE adds underwater worlds, currents, bathymetry, and marine sensors.
-      - >-
-        Stonefish uses physical mesh faces for geometry-informed drag and surface buoyancy, then approximates added mass from fitted primitives. It also brings underwater optics and marine sensors into one simulator. Neither is CFD and neither is automatically exact. The useful comparison is calibration effort, assumptions, and fitness for a particular experiment.
-    media: []
-  - title: Rebuilding the Foundation
-    description: >-
-      Moving from ROS 2 Jazzy and Gazebo Harmonic to Lyrical Luth and Jetty was not a version-label change. It touched the custom plugins, ABI boundaries, Python baseline, launch system, and media stack.
-    body:
-      - >-
-        The workspace now targets Ubuntu 26.04, C++20, Python 3.14, Gazebo Sim 10, and the Lyrical vendor packages. The camera and ArduPilot plugins load through Jetty interfaces, OpenCV 4.12 executes CUDA kernels on the Quadro M1200, and the camera package passes its full test suite.
-      - >-
-        Migration work is part of the project story because research infrastructure also has to survive change. A simulator that only works in one old shell is not a platform.
-    media: []
+      - The active workspace targets Ubuntu 26.04, ROS 2 Lyrical Luth, Gazebo Jetty, C++20, and Python. The vehicle description uses URDF/SDF with ros_gz bridges and MAVLink/ArduSub mappings.
+      - Public technical references used by the project include Gazebo Hydrodynamics and Buoyancy systems, Project DAVE, Stonefish theory documentation, RTAB-Map, ArduSub, and Blue Robotics Cockpit. No public project repository is claimed in this portfolio revision.
 ---

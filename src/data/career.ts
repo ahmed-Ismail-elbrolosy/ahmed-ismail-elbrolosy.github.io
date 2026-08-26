@@ -39,9 +39,9 @@ export const experiences: Experience[] = [
     period: 'Aug. 3 — Sep. 7, 2026',
     type: 'Experience',
     bullets: [
-      'Completed a multidisciplinary telecommunications program centered on 5G infrastructure and its machine-to-machine focus.',
-      'Gained practical understanding of network architecture and communication protocols, including legacy IoT hardware constraints such as 2G modules (SIM800L) and their security implications.',
-      'Studied how AI and computer vision are being embedded into industrial infrastructure beyond LLM-based tooling.',
+      'Studied 5G infrastructure, network architecture, communication protocols, and machine-to-machine use cases.',
+      'Compared current network design with legacy 2G IoT hardware, including SIM800L transport and security constraints.',
+      'Reviewed industrial computer-vision and machine-learning applications in telecommunications infrastructure.',
     ],
     tags: ['5G', 'Telecommunications', 'IoT', 'Network Security', 'M2M'],
     logo: '/images/companies/nokia-odc.webp',
@@ -53,10 +53,10 @@ export const experiences: Experience[] = [
     period: 'Jul. 20 — Aug. 23, 2026',
     type: 'Internship',
     bullets: [
-      'Developed an embedded board for e-scooter control over Bluetooth and internet connectivity, covering lock actuation, speed limiting, and operating-mode switching.',
-      'Implemented parental-control features including zonal location restrictions and time-scheduled usage limits.',
-      'Worked against real product constraints on 2G connectivity (SIM800L) with unsecured HTTP transport.',
-      'Documented R&D progress day by day and practiced technical communication and work presentation within a production-oriented team.',
+      'Prototyped an ESP32 e-scooter controller for lock actuation, speed limiting, and operating-mode changes over Bluetooth and internet links.',
+      'Implemented geofenced and time-scheduled usage restrictions for parental control.',
+      'Evaluated product constraints imposed by SIM800L 2G connectivity and unsecured HTTP transport.',
+      'Maintained daily engineering logs and presented implementation progress to the product team.',
     ],
     tags: ['Embedded C/C++', 'ESP32', 'Bluetooth', 'MQTT', 'GPS Tracking', 'R&D'],
     logo: '/images/companies/trophy-technologies.webp',
@@ -64,14 +64,14 @@ export const experiences: Experience[] = [
   },
   {
     org: 'ROV Team',
-    role: 'Software Team Lead (VSLAM & Simulation Specialist)',
+    role: 'Software Team Member (VSLAM and Simulation)',
     location: 'EJUST, Alexandria',
     period: 'Oct. 2025 — Present',
     type: 'Research team',
     bullets: [
-      'Developing an RTAB-Map VSLAM pipeline for closed-loop underwater object reconstruction and dimensional validation.',
-      'Converted mechanical assemblies to URDF models for ROS2 and Gazebo simulation environments.',
-      'Worked across ROS2 autonomy layers and low-level embedded hardware integration.',
+      'Developing an RTAB-Map pipeline for closed-loop underwater reconstruction and dimensional comparison against a reference scene.',
+      'Converted mechanical assemblies into URDF models for ROS 2 and Gazebo simulation.',
+      'Integrated ROS 2 autonomy components with embedded vehicle interfaces.',
     ],
     tags: ['ROS2', 'SLAM', 'RTAB-Map', 'Gazebo', 'Embedded'],
     logo: '/images/companies/ejust-robotics.webp',
@@ -163,7 +163,8 @@ export const experiences: Experience[] = [
 
 export interface SkillTool {
   name: string;
-  icon: string;
+  icon?: string;
+  iconText?: string;
   description: string;
 }
 
@@ -175,37 +176,39 @@ export interface SkillGroup {
 export const skills: Record<string, SkillGroup> = {
   'Robotics & AI': {
     tools: [
-      { name: 'ROS2', icon: 'ROS', description: 'Robot middleware' },
-      { name: 'PyTorch', icon: 'PT', description: 'Deep learning' },
-      { name: 'TensorFlow', icon: 'TF', description: 'ML workflows' },
-      { name: 'OpenCV', icon: 'CV', description: 'Computer vision' },
+      { name: 'ROS 2', icon: 'images/skills/ros2.svg', description: 'Robot middleware' },
+      { name: 'PyTorch', icon: 'images/skills/pytorch.svg', description: 'Deep learning' },
+      { name: 'TensorFlow', icon: 'images/skills/tensorflow.svg', description: 'ML workflows' },
+      { name: 'OpenCV', icon: 'images/skills/opencv.svg', description: 'Computer vision' },
     ],
     tags: ['Nav2', 'VSLAM', 'SLAM', 'RTAB-Map', 'MoveIt2', 'YOLO'],
   },
   'Mechanical & CAD': {
     tools: [
-      { name: 'SolidWorks', icon: 'SW', description: 'CAD and assemblies' },
-      { name: 'Altium Designer', icon: 'AD', description: 'PCB design' },
+      { name: 'SolidWorks', icon: 'images/skills/solidworks.svg', description: 'CAD and assemblies' },
+      { name: 'Altium Designer', iconText: 'AD', description: 'PCB design' },
     ],
     tags: ['CSWP', 'FEA', 'GD&T', 'DFM', '3D Printing', 'Mechanism Design', 'Kinematics'],
   },
   Programming: {
     tools: [
-      { name: 'Python', icon: 'PY', description: 'Automation and robotics' },
-      { name: 'Git', icon: 'GIT', description: 'Version control' },
-      { name: 'MATLAB / Simulink', icon: 'M', description: 'Modeling and simulation' },
-      { name: 'Linux', icon: 'LX', description: 'Development environment' },
-      { name: 'Flask', icon: 'FL', description: 'Web APIs' },
-      { name: 'Azure Databricks', icon: 'DB', description: 'Data engineering' },
-      { name: 'Apache Spark', icon: 'SP', description: 'Data processing' },
+      { name: 'Python', icon: 'images/skills/python.svg', description: 'Automation and robotics' },
+      { name: 'Git', icon: 'images/skills/git.svg', description: 'Version control' },
+      { name: 'MATLAB / Simulink', icon: 'images/skills/matlab.svg', description: 'Modeling and simulation' },
+      { name: 'Linux', icon: 'images/skills/linux.svg', description: 'Development environment' },
+      { name: 'Flask', icon: 'images/skills/flask.svg', description: 'Web APIs' },
+      { name: 'Azure Databricks', icon: 'images/skills/databricks.svg', description: 'Data engineering' },
+      { name: 'Apache Spark', icon: 'images/skills/apachespark.svg', description: 'Data processing' },
     ],
     tags: ['Embedded C/C++', 'SQL'],
   },
   'Embedded Systems': {
     tools: [
-      { name: 'Arduino', icon: 'AR', description: 'Rapid prototyping' },
-      { name: 'ESP32', icon: 'E32', description: 'Wireless embedded systems' },
-      { name: 'micro-ROS', icon: 'uR', description: 'ROS on microcontrollers' },
+      { name: 'Arduino', icon: 'images/skills/arduino.svg', description: 'Rapid prototyping' },
+      { name: 'ESP32', icon: 'images/skills/esp32.svg', description: 'Wireless embedded systems' },
+      { name: 'STM32', icon: 'images/skills/stm32.svg', description: 'MCU development' },
+      { name: 'FreeRTOS', iconText: 'RTOS', description: 'Real-time scheduling' },
+      { name: 'micro-ROS', icon: 'images/skills/micro-ros.svg', description: 'ROS on microcontrollers' },
     ],
     tags: ['MQTT', 'I2C', 'SPI', 'UART', 'BMS Design', 'Real-Time Systems', 'Sensor Fusion'],
   },

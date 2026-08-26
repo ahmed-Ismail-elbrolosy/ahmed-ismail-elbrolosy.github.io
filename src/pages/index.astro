@@ -36,7 +36,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
     <header class="section-intro">
       <p class="section-code">INDEX / {projectRange}</p>
       <h2 id="selected-work-title">Selected Work</h2>
-      <p>Robotics systems, control research, and engineering projects. Documentation is being expanded as evidence becomes available.</p>
+      <p>Robotics, controls, and mechanism projects. Each record separates implemented work, observed results, and unverified targets.</p>
     </header>
     <div class="featured-work">
       {projects.filter((project) => project.data.featured).map((project) => <ProjectPreview project={project} featured />)}
@@ -50,7 +50,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
     <header class="section-intro compact">
       <p class="section-code">ARCHIVE / {archiveRange}</p>
       <h2 id="archive-title">Additional Work</h2>
-      <p>Compact project records with direct visual evidence, retained separately from the selected case studies.</p>
+      <p>Smaller records retained where the available evidence does not support a full technical case study.</p>
     </header>
     <div class="archive-list">
       {secondaryProjects.map((project, index) => (
@@ -72,9 +72,31 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
     </div>
   </section>
 
+  <section id="about" class="about-section shell scroll-section" aria-labelledby="about-title">
+    <header class="about-header home-about-header">
+      <p class="section-code">02 / ABOUT</p>
+      <h2 id="about-title">{site.aboutTitle}</h2>
+      <p class="about-lead">{site.aboutLead}</p>
+    </header>
+    <div class="profile-grid" aria-label="Engineering approach">
+      <div>
+        <p class="mono-label">System scope</p>
+        <p>Mechanical design, embedded hardware, feedback control, ROS 2, simulation, localization, and perception.</p>
+      </div>
+      <div>
+        <p class="mono-label">Working method</p>
+        <p>Define constraints, model the plant, integrate subsystems, then test the physical or simulated system against explicit criteria.</p>
+      </div>
+      <div>
+        <p class="mono-label">Evidence rule</p>
+        <p>Qualitative demonstrations remain qualitative. Numerical claims require units, test conditions, and a reproducible comparison.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="experience" class="about-section shell scroll-section" aria-labelledby="experience-title">
     <header class="about-section-heading">
-      <span>02 /</span>
+      <span>03 /</span>
       <h2 id="experience-title">Experience</h2>
     </header>
     <div class="experience-list compact-experience-list">
@@ -109,7 +131,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
 
   <section id="education" class="about-section shell scroll-section" aria-labelledby="education-title">
     <header class="about-section-heading">
-      <span>03 /</span>
+      <span>04 /</span>
       <h2 id="education-title">Education</h2>
     </header>
     <article class="education-entry">
@@ -128,7 +150,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
 
   <section id="skills" class="about-section shell scroll-section" aria-labelledby="skills-title">
     <header class="about-section-heading">
-      <span>04 /</span>
+      <span>05 /</span>
       <h2 id="skills-title">Skills</h2>
     </header>
     <div class="skills-grid">
@@ -141,7 +163,9 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
               <div class="skill-tool-grid">
                 {entries.tools.map((tool) => (
                   <div class="skill-tool-card">
-                    <span class="skill-tool-icon" aria-hidden="true">{tool.icon}</span>
+                    <span class="skill-tool-icon" aria-hidden="true">
+                      {tool.icon ? <img src={assetPath(tool.icon)} alt="" loading="lazy" /> : tool.iconText}
+                    </span>
                     <strong>{tool.name}</strong>
                     <span>{tool.description}</span>
                   </div>
@@ -157,7 +181,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
 
   <section id="contact" class="about-section shell scroll-section contact-section" aria-labelledby="contact-title">
     <header class="about-header home-about-header">
-      <p class="section-code">05 / CONTACT</p>
+      <p class="section-code">06 / CONTACT</p>
       <h2 id="contact-title">{site.contactTitle}</h2>
       <p class="about-lead">{site.contactLead}</p>
     </header>

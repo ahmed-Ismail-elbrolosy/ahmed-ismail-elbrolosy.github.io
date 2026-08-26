@@ -6,6 +6,7 @@ const htmlFiles = [];
 const requiredNavigation = [
   '#home',
   '#projects',
+  '#about',
   '#experience',
   '#education',
   '#skills',
@@ -20,7 +21,6 @@ const requiredProjectSubnav = [
   'projects/rocker-bogie',
   'projects/trash-collector',
   'projects/robotino',
-  'projects/linear-actuator',
   'projects/self-balancing-robot',
   'projects/gan-gogh',
 ];

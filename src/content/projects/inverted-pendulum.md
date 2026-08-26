@@ -3,63 +3,59 @@ order: 3
 title: Inverted Pendulum Control Study
 navTitle: Inverted Pendulum
 previewTitle: Inverted Pendulum
-description: I am using a familiar control benchmark to build verified single-, double-, and triple-link models before comparing classical, fuzzy, and learning-based controllers.
+description: A MuJoCo study deriving and validating one-, two-, and three-link cart-pendulum models before controller comparison.
 category: Control / Research
 featured: false
 year: Present
 type: Ongoing research project
 role: Researcher
-stack: [MuJoCo, Dynamics, State-Space Modeling, Control Theory]
+stack: [MuJoCo, Euler-Lagrange Dynamics, Linearization, State-Space Modeling, Control Theory]
 heroMedia:
   type: image
   src: project-assets/inverted-pendulum/double_iso.png
-  alt: Double inverted pendulum model displayed in MuJoCo
-  label: Double-pendulum MuJoCo model
-  caption: One of three cart-pendulum configurations prepared for the control study.
+  alt: Double inverted pendulum model in MuJoCo
+  label: Double-link MuJoCo plant
+  caption: The middle plant in a common one-, two-, and three-link modeling progression.
 sections:
-  - title: Start Where the Theory Is Strong
-    description: The inverted pendulum was chosen because existing theory and implementations provide baselines to reproduce rather than a wheel to reinvent.
+  - title: Core Objective & Constraints
+    description: Reproduce a well-understood unstable benchmark before comparing classical, fuzzy, reinforcement-learning, and neuro-fuzzy control methods.
     body:
-      - >-
-        The progression from one link to three increases coupling and instability while preserving a common experimental structure. This keeps the research question focused on modeling discipline and controller behavior instead of novelty in the plant itself.
-      - >-
-        Reproducing established baselines is the first gate. More advanced methods only become meaningful after the underlying models and comparison protocol agree.
+      - The plant family preserves a common cart-force input while increasing dynamic coupling from one to three serial links. Established theory provides comparison points and reduces ambiguity in the model itself.
+      - Current scope covers planar rigid links, clearance-free joints, absolute angles from the upward vertical, and linearization at the all-upright equilibrium. Cart travel and actuator-force limits are not yet defined.
+  - title: System Architecture & Schematics
+    description: Analytical models and MuJoCo plants share generalized coordinates, physical parameters, initial conditions, and input definitions.
+    body:
+      - The derivation records center-of-mass kinematics, kinetic and potential energy, Euler-Lagrange equations, nonlinear mechanical form, upright linearization, and continuous-time state-space matrices.
+      - MuJoCo was selected as one rigid-body environment for both conventional and learning-based control. Isaac Sim exceeded available hardware needs; Simulink Multibody would split the later experiment stack.
     media:
       - type: image
         src: project-assets/inverted-pendulum/single_iso.png
         alt: Single inverted pendulum cart model
-        label: Single-link baseline
-        caption: The least coupled model establishes the first analytical and simulation comparison point.
-  - title: One Environment for the Whole Progression
-    description: MuJoCo keeps classical and learning-based experiments in one rigid-body simulation environment without adding platform complexity the study does not need.
-    body:
-      - >-
-        Isaac Sim was rejected because the available machine could not support it and it offered no clear advantage for this project. Simulink Multibody was not selected because later learning-based methods also need to operate under the same simulation assumptions.
-      - >-
-        This is a scope decision, not a universal simulator ranking. MuJoCo is the smallest environment that supports the planned comparison consistently.
-    media:
+        label: Single-link plant
+        caption: Baseline plant for the first analytical-to-simulation comparison.
       - type: image
         src: project-assets/inverted-pendulum/triple_iso.png
         alt: Triple inverted pendulum cart model
-        label: Triple-link model
-        caption: The third link extends the same plant family into a more strongly coupled configuration.
-  - title: The Modeling Stage Is Complete
-    description: The current record derives nonlinear dynamics and upright linearizations for cart-mounted systems with one, two, and three serial links.
+        label: Triple-link plant
+        caption: The most strongly coupled configuration in the current model set.
+  - title: Control, Algorithm, or Mechanical Implementation
+    description: Modeling is complete; controller implementation follows a gated progression from reproducible baselines to experimental methods.
     body:
-      - >-
-        The derivation covers generalized coordinates, center-of-mass kinematics, energy terms, Euler-Lagrange equations, nonlinear mechanical form, and continuous-time state-space models around the all-upright equilibrium.
-      - >-
-        The numerical matrices currently use zero damping and friction. Analytical-to-MuJoCo trajectory validation has not yet been attached, so the work is presented as completed modeling rather than validated control performance.
+      - PID and LQR form the conventional baseline. Planned extensions are fuzzy PID, PPO, ANFIS, and Fuzzy-PPO, all evaluated under the same plant and initial-condition protocol.
+      - Mixed zero-or-pi link targets, swing-up, upright stabilization, and robustness to damping or friction are separate tasks. The current all-upright linear model cannot be reused as evidence for every operating point.
+  - title: Quantitative Results & Failure Modes
+    description: State-space models exist for all three plants, but trajectory agreement and controller benchmarks have not yet been demonstrated.
+    body:
+      - Current numerical matrices set damping and friction to zero. No settling time, overshoot, angle error, cart-position error, control effort, or success rate is published before analytical trajectories agree with MuJoCo under recorded solver settings.
+      - Each controller test will report initial conditions, angle and cart responses, control effort, settling behavior, constraint violations, and failure cases. Robustness claims require explicit damping and friction ranges.
+  - title: Code, CAD & Documentation Links
+    description: The mathematical report is the primary completed artifact for this stage.
+    body:
+      - The report contains the generalized derivation, assumptions, linearization, and numerical state-space records for one, two, and three links.
+      - MuJoCo model sources and controller code are not yet linked publicly; publication follows analytical-to-simulation validation.
     media:
       - type: document
         src: project-assets/inverted-pendulum/sys_modeling.pdf
-        label: Single-to-triple pendulum model
-        caption: Original mathematical derivation and numerical state-space record for the three configurations.
-  - title: Controllers Are the Next Experiment
-    description: PID and LQR will establish conventional baselines before fuzzy PID, PPO, ANFIS, and Fuzzy-PPO are evaluated under the same conditions.
-    body:
-      - >-
-        The planned controller ladder moves from standard feedback methods toward rule-based, reinforcement-learning, and neuro-fuzzy approaches. None of those methods is presented as a completed result yet.
-      - >-
-        Future comparisons must report the same initial conditions, angle and cart responses, control effort, settling behavior, and failure cases. Mixed zero-or-pi link targets and variable damping or friction require separate operating points and test definitions.
+        label: Pendulum modeling report
+        caption: Mathematical derivation and numerical state-space models for the three configurations.
 ---

@@ -2,88 +2,78 @@
 order: 4
 title: Rocker-Bogie Rover
 navTitle: Rocker-Bogie Rover
-description: A five-person team moved a six-wheel rocker-bogie rover from SolidWorks articulation studies to a PVC prototype, then let stairs and an incline expose what CAD could not settle.
+description: A five-person team developed a six-wheel PVC rover from a SolidWorks articulation study through physical stair and incline tests.
 category: School Project / Robotics
 year: May 2025
 type: MTE 321 project-based learning
-role: SolidWorks simulation and analysis, final electrical circuit, and assembly
+role: SolidWorks simulation and analysis, electrical circuit, and final assembly
 stack: [SolidWorks, Motion Study, PVC Fabrication, Servo Actuation, ESP8266, Differential Steering]
 heroMedia:
   type: image
   src: "project-assets/Rocker-Bogie/WhatsApp Image 2026-08-14 at 4.09.40 PM (1).jpeg"
   alt: Completed six-wheel PVC rocker-bogie rover viewed from the side
-  label: Completed physical rover
-  caption: The assembled six-wheel prototype used for the stair and incline demonstrations.
+  label: Completed rover
+  caption: Six-wheel PVC prototype used for stair ascent, descent, and incline trials.
 sections:
-  - title: Keep Six Wheels Useful
-    description: The mechanism had to accommodate repeated height changes without a conventional sprung suspension.
+  - title: Core Objective & Constraints
+    description: Build an articulated six-wheel chassis that could negotiate repeated height changes without a conventional sprung suspension.
     body:
-      - >-
-        The rocker and bogie links form one connected geometry: changing a link changes the posture of the rest of the rover. The team therefore began by inspecting articulation in CAD before committing the dimensions to a physical frame.
-      - >-
-        The design question was not whether the assembly could animate. It was whether the fabricated mechanism could preserve useful wheel contact when traction, impacts, and frame compliance entered the problem.
+      - The five-person course team had to convert coupled rocker-bogie geometry into a low-cost physical platform suitable for a stair-climbing competition.
+      - PVC compliance, servo synchronization, wheel clearance, traction, impact loading, and limited fabrication precision were physical constraints absent from the CAD animation.
+  - title: System Architecture & Schematics
+    description: Passive rocker-bogie articulation maintains wheel contact while six wheel-mounted servos provide differential drive.
+    body:
+      - The structure uses PVC links and reinforced loaded joints. Custom adapters connect servo horns to the wheels, and a buck converter regulates the servo supply.
+      - An ESP8266 provides the wireless interface and differential-steering commands. The final wheel diameter is 13 cm after smaller wheels failed to provide sufficient obstacle clearance.
     media:
       - type: image
         src: "project-assets/Rocker-Bogie/WhatsApp Image 2026-08-14 at 4.09.40 PM.jpeg"
-        alt: Rocker-bogie rover during mechanical assembly on a workshop bench
+        alt: Rocker-bogie rover during assembly on a workshop bench
         label: Mechanical assembly
-        caption: PVC links, pivots, and wheel-mounted servos during the physical build.
-  - title: CAD Prepared the Question
-    description: The SolidWorks Motion Study previewed linkage motion over separated obstacles before fabrication.
+        caption: PVC links, pivots, wheel adapters, and mounted servos during fabrication.
+  - title: Control, Algorithm, or Mechanical Implementation
+    description: A SolidWorks Motion Study reduced linkage uncertainty before fabrication, then the physical build forced wheel and joint revisions.
     body:
-      - >-
-        The study provided a qualitative check of articulation and wheel motion. It did not prove traction, structural stiffness, impact response, or physical traversal.
-      - >-
-        That boundary made the simulation useful: it reduced geometric uncertainty while leaving the terrain questions for hardware.
+      - The motion study checked articulation over separated obstacles. It did not model traction, frame flex, impacts, servo mismatch, or electrical loading.
+      - During assembly, the team reinforced high-load joints and replaced the original wheels. My contribution covered the SolidWorks study and analysis, final electrical circuit, and assembly.
     media:
       - type: video
         src: "project-assets/Rocker-Bogie/Simulation with motion study.mp4"
         label: SolidWorks motion study
-        caption: Pre-fabrication articulation study over separated CAD obstacles.
+        caption: Pre-fabrication articulation study; not a physical traversal result.
         poster: project-assets/Rocker-Bogie/motion-study-poster.jpg
         ratio: cinematic
         silent: true
-  - title: The Prototype Forced Iteration
-    description: PVC fabrication, wheel interfaces, power delivery, and synchronization turned the mechanism into an electromechanical system.
+  - title: Quantitative Results & Failure Modes
+    description: Recorded trials show successful stair ascent, descent, and incline traversal; geometry, timing, and repeatability were not measured consistently.
     body:
-      - >-
-        The team built a lightweight PVC frame, used six wheel-mounted servos, and fabricated custom adapters between the servo horns and wheels. Smaller initial wheels lacked sufficient clearance, so the final build moved to 13 cm wheels.
-      - >-
-        A buck converter regulated servo power. The final control implementation used an ESP8266 and differential steering; contradictory controller descriptions in the internal report are excluded.
-  - title: Stairs in Both Directions
-    description: Ascent and descent exposed repeated impacts, changing body attitude, and different load transitions in the same terrain.
-    body:
-      - >-
-        The two clips provide the strongest direct evidence in the project record. They show successful recorded traversals, but they do not independently verify stair dimensions, traversal time, or repeatability.
-      - >-
-        Placing the directions side by side makes the mechanical comparison visible without turning one run into a performance claim.
+      - The videos verify individual successful runs and visible articulation under changing terrain. They do not establish stair dimensions, ramp angle, traversal time, success rate, or structural margin.
+      - Observed design risks were PVC flex at loaded joints, servo synchronization, insufficient initial wheel clearance, traction changes, and impact loads. Conflicting internal report values are excluded.
     media:
       - type: video
         src: "project-assets/Rocker-Bogie/Stair climbing up.mp4"
         label: Stair ascent
-        caption: Physical demonstration of the rover climbing the available stair sequence.
+        caption: Qualitative evidence of a successful recorded ascent.
         poster: project-assets/Rocker-Bogie/stair-up-poster.jpg
         ratio: portrait
         silent: true
       - type: video
         src: "project-assets/Rocker-Bogie/Stair climbing down.mp4"
         label: Stair descent
-        caption: Physical demonstration of the articulated frame descending the same terrain.
+        caption: Qualitative evidence of a successful recorded descent.
         poster: project-assets/Rocker-Bogie/stair-down-poster.jpg
         ratio: portrait
         silent: true
-  - title: The Ramp Was the Baseline
-    description: The incline run provided a simpler physical comparison before the discontinuous geometry of the stairs.
+  - title: Code, CAD & Documentation Links
+    description: The public record contains the CAD motion study and physical test media, not the contradictory internal report.
     body:
-      - >-
-        The recorded run demonstrates incline traversal without establishing an angle from the video perspective. Conflicting report values remain excluded until the actual test geometry is confirmed.
-      - >-
-        Together, the three physical clips show the project journey more honestly than an unsupported table: CAD prepared the mechanism, fabrication introduced constraints, and terrain judged the result.
+      - The incline recording provides an additional terrain baseline without claiming an angle inferred from the camera view.
+      - CAD source, ESP8266 firmware, circuit drawing, and raw test logs are not available as public links.
     media:
       - type: video
         src: "project-assets/Rocker-Bogie/Moving on a ramp.mp4"
-        label: Ramp traversal
-        caption: Physical incline test used as a simpler baseline before the stair demonstrations.
+        label: Incline traversal
+        caption: Recorded incline run without an asserted ramp angle.
         poster: project-assets/Rocker-Bogie/ramp-poster.jpg
         ratio: portrait
         silent: true

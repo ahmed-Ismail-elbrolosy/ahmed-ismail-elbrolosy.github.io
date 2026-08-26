@@ -24,7 +24,7 @@ export interface SecondaryProject {
 export const secondaryProjects: SecondaryProject[] = [
   {
     title: 'Foldable Magnetic Product Box',
-    description: 'A freelance luxury-packaging concept developed as a niche foldable magnetic box ready for production handoff.',
+    description: 'Foldable cardboard packaging with a magnetic closure, developed as a freelance product-design handoff. Materials, dimensions, and production results were not recorded.',
     category: 'Product Design / Freelance',
     date: 'Feb. 2026',
     tags: ['Luxury Packaging', 'Product Design', 'Cardboard Prototyping'],
@@ -38,7 +38,7 @@ export const secondaryProjects: SecondaryProject[] = [
   },
   {
     title: 'Autonomous Guided Vehicle (AGV) System',
-    description: 'Vision-guided AGV platform with QR-code localization, line tracking, and a 2-DOF robotic arm.',
+    description: 'Raspberry Pi AGV combining OpenCV line tracking, QR-code localization, and a 2-DOF arm. Payload and navigation error were not measured.',
     category: 'Robotics / Automation',
     date: 'Jan. 2024',
     tags: ['Python', 'Raspberry Pi', 'OpenCV', 'ROS', 'Embedded C'],
@@ -50,13 +50,5 @@ export const secondaryProjects: SecondaryProject[] = [
       label: 'Muted looping preview of the autonomous guided vehicle test',
       caption: 'Portrait test recording showing the white AGV beside a floor line and QR marker while its arm mechanism moves.',
     },
-  },
-  {
-    title: 'AgriBot',
-    description: 'Autonomous agricultural robot. Further project details pending.',
-    category: 'Robotics / Agriculture',
-    date: 'Mar. 2025',
-    tags: ['Robotics', 'ROS2'],
-    status: 'Completed',
   },
 ];

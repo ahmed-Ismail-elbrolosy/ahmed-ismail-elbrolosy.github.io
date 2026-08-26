@@ -18,7 +18,7 @@ interface Props {
   showCaption?: boolean;
 }
 
-const { src, label, caption, poster, ratio = 'wide', silent = false, captions, index, showCaption = true } = Astro.props;
+const { src, label, caption, poster, ratio = 'wide', captions, index, showCaption = true } = Astro.props;
 ---
 
 <figure class:list={['project-video', `video-${ratio}`]}>
@@ -27,11 +27,12 @@ const { src, label, caption, poster, ratio = 'wide', silent = false, captions, i
     <video
       class="js-project-player"
       controls
+      muted
       playsinline
       preload="metadata"
       poster={poster ? assetPath(poster) : undefined}
       aria-label={label}
-      data-silent={silent ? 'true' : undefined}
+      data-silent="true"
       data-has-captions={captions ? 'true' : undefined}
     >
       <source src={assetPath(src)} type="video/mp4" />
@@ -51,7 +52,7 @@ const { src, label, caption, poster, ratio = 'wide', silent = false, captions, i
     <figcaption>
       <strong>{label}</strong>
       <span>{caption}</span>
-      {silent && <span class="media-audio-note">Silent video</span>}
+      <span class="media-audio-note">Muted video</span>
     </figcaption>
   )}
 </figure>

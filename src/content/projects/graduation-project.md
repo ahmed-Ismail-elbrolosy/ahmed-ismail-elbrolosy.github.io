@@ -3,7 +3,7 @@ order: 2
 title: Autonomous Lifting AGV
 navTitle: Graduation Project
 previewTitle: Autonomous Lifting AGV
-description: A warehouse rack should move because an operator selected it, not because someone drove a cart. I am building the AGV, lift, and autonomy stack that closes that loop.
+description: An ongoing mecanum AGV that must navigate beneath a selected warehouse rack, lift it, and transport it without manual alignment.
 category: Graduation Project / Warehouse Robotics
 featured: true
 year: 2026 — Present
@@ -13,58 +13,48 @@ stack: [ROS 2, Mecanum Drive, Autonomous Navigation, Embedded Systems, SolidWork
 heroMedia:
   type: image
   src: project-assets/graduation-project/navigation-system-poster.jpg
-  alt: Navigation-system development view for the autonomous lifting AGV
-  label: Navigation system in development
-  caption: Current visual evidence from the AGV navigation workflow; the integrated physical system will replace this hero when documented.
+  alt: Navigation development view for the autonomous lifting AGV
+  label: Navigation development
+  caption: Current navigation evidence; final under-rack alignment and integrated lifting remain unmeasured.
 sections:
-  - title: The Job Is Larger Than Navigation
-    description: >-
-      The assignment sounds simple: select a rack and ask a robot to move it. The machine has to turn that click into a safe mechanical operation without a human driving the final metres.
+  - title: Core Objective & Constraints
+    description: Convert a rack selection into autonomous approach, under-rack alignment, lifting, transport, and placement as one recoverable sequence.
     body:
-      - >-
-        The AGV must plan toward the selected rack, approach it with enough control to fit underneath, stop in the correct lifting position, raise the load, and transport it as one continuous sequence. Navigation cannot be developed as a detached demo because its final pose determines whether the mechanism can do its job.
-      - >-
-        This is why the graduation project joins mechanical lift design, an omnidirectional base, embedded control, and ROS 2 autonomy. Each subsystem constrains the next one, and the system only succeeds when the hand-offs work.
-    media: [AGV SYSTEM ARCHITECTURE]
-  - title: Move Sideways Before Lifting
-    description: >-
-      A mecanum base gives the vehicle the lateral correction that under-rack positioning demands, but it also makes control and wheel behaviour part of the precision problem.
+      - The final navigation pose is constrained by the lift interface, not only by collision-free arrival. Lateral offset, heading error, rack clearance, payload, and aisle geometry must eventually be tested together.
+      - The project is ongoing. Lift capacity, required lift height, final-pose tolerance, and mission repeatability are not yet published because the integrated tests are incomplete.
+  - title: System Architecture & Schematics
+    description: A ROS 2 autonomy stack commands an omnidirectional base whose final pose must satisfy the mechanical scissor-lift geometry.
     body:
-      - >-
-        The base is being developed around the ability to translate and rotate without a conventional steering arc. That freedom is useful in warehouse aisles, especially during the final alignment, but every commanded motion still has to survive wheel slip, load changes, and real actuator differences.
-      - >-
-        The navigation video records the current software path rather than a finished performance claim. It belongs here as evidence of progress and as a reference for the next positioning tests.
+      - The system joins rack selection, path planning, localization, mecanum motion control, embedded motor interfaces, lift actuation, and mission-state handling.
+      - Mecanum kinematics provide lateral correction in constrained aisles, but wheel slip, actuator mismatch, changing load, and floor condition remain part of the positioning error budget.
+  - title: Control, Algorithm, or Mechanical Implementation
+    description: Navigation and lift development currently proceed as bounded subsystems before integrated rack-transfer testing.
+    body:
+      - The navigation recording documents the developing motion and control workflow. It is not presented as a final-pose benchmark because no synchronized ground-truth measurement accompanies it.
+      - A four-scissor SolidWorks motion study checks mechanism travel and interference. The model does not establish structural capacity, stiffness, actuator sizing, or physical load performance.
     media:
       - type: video
         src: project-assets/graduation-project/navigation-system-silent.mp4
         label: Navigation-system development
-        caption: Current navigation evidence for the mecanum AGV. The clip documents the developing motion and control workflow; final under-rack accuracy remains to be measured.
+        caption: Current mecanum navigation workflow before measured under-rack alignment tests.
         poster: project-assets/graduation-project/navigation-system-poster.jpg
         ratio: landscape
         silent: true
-  - title: The Lift Has to Belong to the Robot
-    description: >-
-      The lifting mechanism is not an attachment added after the mobile base. Its geometry, motion, load path, and packaging determine what the AGV can carry and where it can position itself.
-    body:
-      - >-
-        The scissor-lift motion study checks how the mechanism travels through its range before a physical load test. It is useful evidence of geometry and interference, but it does not replace structural analysis or payload validation.
-      - >-
-        The next record must connect this motion to actuator choice, lift height, rack interface, and the forces seen by the chassis. Those specifications will be published when the design is frozen and tested.
-    media:
       - type: video
         src: "project-assets/graduation-project/M6 4scissor_Motion.mp4"
         label: Four-scissor lift motion study
-        caption: SolidWorks motion evidence for the developing lifting mechanism, shown before payload and stiffness validation.
+        caption: Geometric motion study before actuator, payload, and stiffness validation.
         poster: project-assets/graduation-project/scissor-lift-poster.jpg
         ratio: landscape
         silent: true
-  - title: Closing the Autonomous Cycle
-    description: >-
-      The project is finished only when selection, planning, alignment, lifting, transport, and placement operate as one recoverable sequence.
+  - title: Quantitative Results & Failure Modes
+    description: Available artifacts verify subsystem development only; the measurements that decide mission success remain open.
     body:
-      - >-
-        The remaining work is not hidden behind a polished render: system architecture, sensor choices, lift specifications, final-pose error, payload testing, and photographs of the integrated machine still need to enter the record.
-      - >-
-        As those tests land, this page will replace placeholders with the exact evidence and failures that changed the design. An ongoing graduation project should show its unfinished edges without pretending they are conclusions.
-    media: [INTEGRATED AGV PHOTOGRAPH, AUTONOMOUS MISSION RESULT]
+      - No final-pose error, payload capacity, lift time, path-tracking error, mission duration, or success rate is claimed in the current record.
+      - Expected failure modes include mecanum slip, accumulated localization error, poor rack approach geometry, lift interference, frame deflection, actuator saturation, and loss of safe recovery between mission states.
+  - title: Code, CAD & Documentation Links
+    description: Current public evidence consists of the navigation recording and SolidWorks lift study.
+    body:
+      - System schematics, embedded interfaces, frozen CAD dimensions, and a source repository will be linked only after the team approves publication.
+      - The next evidence release should include the integrated vehicle, lift specifications, test geometry, raw pose data, payload protocol, and observed failure cases.
 ---

@@ -716,8 +716,12 @@ h3 {
   display: flex;
   align-items: center;
   overflow-x: auto;
-  scrollbar-color: var(--color-line-dark) transparent;
-  scrollbar-width: thin;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.project-subnav-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .project-subnav-link {
@@ -1368,6 +1372,12 @@ h3 {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: -0.06em;
+}
+
+.skill-tool-icon img {
+  width: 1.65rem;
+  height: 1.65rem;
+  object-fit: contain;
 }
 
 .skill-tool-card strong {
