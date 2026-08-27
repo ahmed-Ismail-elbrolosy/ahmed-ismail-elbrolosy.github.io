@@ -35,15 +35,14 @@ sections:
     media:
       - type: image
         src: project-assets/roviro/system-architecture.png
-        alt: ROViro architecture connecting simulation, vehicle control, stereo mapping, streaming, and the operator station
+        alt: High-resolution ROViro architecture connecting simulation, vehicle control, stereo mapping, streaming, and the operator station
         label: System architecture
         caption: Separate vehicle-control, simulation, stereo-processing, video-transport, and operator-interface signal paths.
-  - title: Control Baseline & Stereo Reconstruction Pipeline
+  - title: Control Baseline & Symmetric Vehicle Validation
     description: Experiments separate the asymmetric Kami allocation problem from validation of the conventional ArduSub and stereo-mapping pipeline using a symmetric reference vehicle.
     body:
       - "Direct ArduSub control of Kami remains under evaluation because its asymmetric seven-thruster geometry requires custom mixer tuning. A BlueROV2 Heavy model carrying the same camera layout provides a symmetric reference for verifying the standard control and VSLAM pipeline before attributing failures to Kami's geometry."
       - "The BlueROV2 Heavy baseline used phone-based Wi-Fi control. ArduSub Stabilize and AltHold modes provide baseline attitude and heave behavior for later comparison with custom state-feedback controllers."
-      - "The mapping pipeline records stereo data, replays at 0.3× speed with 2× spatial downscaling, and processes through RTAB-Map. Rerun visualizes camera feeds, attitude and heave traces, estimated trajectory, and the reconstructed point cloud."
     media:
       - type: image
         src: project-assets/roviro/cockpit-operator-view.jpg
@@ -55,10 +54,25 @@ sections:
         alt: Vehicle cockpit view exploring the interior of a submerged aircraft wreck
         label: Underwater scene navigation
         caption: Interior navigation within the submerged aircraft model during stereo mapping and trajectory recording.
+  - title: Stereo VSLAM & Rerun 3D Reconstruction Pipeline
+    description: Decoupled offline mapping pipeline with uncompressed SGM-HH stereo disparity (256 levels) and synchronized Rerun 3D visualization, concluding Phase 1 validation before custom controller synthesis.
+    body:
+      - "Due to workstation resource constraints during concurrent physics and dense visual simulation (20m 39s real time yielded ~147s simulation time), live SLAM was decoupled by capturing raw uncompressed stereo rosbags."
+      - "Offline mapping leveraged RTAB-Map with Semi-Global Matching Hierarchical (SGM-HH) across 256 disparities without compression, maximizing underwater feature density and depth map precision."
+      - "The recording was replayed at 0.15× rate (~3h total processing) into Rerun, visualizing synchronized 3D dense point clouds, 6-DOF vehicle trajectories, raw stereo feeds, and attitude/heave telemetry traces."
+      - "With Phase 1 (Perception & VSLAM pipeline verification) complete, project focus shifts to Phase 2: custom state-space control allocation and disturbance-rejection controller synthesis for Kami's asymmetric thruster geometry."
+    media:
+      - type: video
+        src: project-assets/roviro/vslam-rerun-visualization.mp4
+        label: VSLAM & Rerun 3D reconstruction pipeline
+        caption: Simulation recording and offline RTAB-Map stereo mapping with synchronized telemetry visualization in Rerun.
+        poster: project-assets/roviro/vslam-rerun-poster.jpg
+        ratio: landscape
+        silent: true
   - title: Current Results & Known Limitations
     description: Resource constraints produced a reproducible offline pipeline. No control-accuracy or reconstruction-error claim is quantitatively supported yet.
     body:
-      - "Stereo frames were reduced from 1280×720 to 1280×540 (25% pixel reduction retaining horizontal FOV). Processing uses 2× downscaling and 0.3× replay because the workstation could not sustain the full simulator, control stack, and live stereo mapping concurrently."
+      - "Stereo frames were reduced from 1280×720 to 1280×540 (25% pixel reduction retaining horizontal FOV). Processing uses 2× downscaling and 0.15× replay to decouple simulation throughput from dense stereo reconstruction limits."
       - "Command traces represent requested thrust, not measured force. Simulated trajectories are not physical vehicle accuracy. Reconstruction quality remains qualitative until Blender reference geometry and MeshLab dimensional measurements yield absolute and percentage error."
       - "Gazebo provides ROS integration and configured marine dynamics; Stonefish is retained for future geometry-informed marine simulation comparison. Neither environment is treated as CFD or as an automatically calibrated physical model."
   - title: Repository & Publication Status

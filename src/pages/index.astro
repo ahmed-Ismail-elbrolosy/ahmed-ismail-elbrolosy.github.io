@@ -199,6 +199,7 @@ const [primaryRole, secondaryRole] = site.mainQuote.split('/').map((role) => rol
       </div>
       <div>
         <p class="mono-label">Contact</p>
+        <a href={`mailto:${personal.academicEmail}`}>{personal.academicEmail}</a>
         <a href={`mailto:${personal.email}`}>{personal.email}</a>
         <a href={`tel:${personal.phone.replaceAll(' ', '')}`}>{personal.phone}</a>
       </div>

@@ -2,7 +2,7 @@
 order: 3
 title: "TIP: Triple Inverted Pendulum"
 navTitle: Inverted Pendulum
-previewTitle: Triple Inverted Pendulum
+previewTitle: TIP
 description: "Euler-Lagrange dynamics derivation, state-space linearization, and feedback stabilization of single-, double-, and triple-link cart-pendulum systems in MuJoCo."
 category: Control Theory / Research
 featured: true
@@ -12,10 +12,10 @@ role: Sole Researcher — Analytical Derivation, Controller Synthesis, Simulatio
 stack: [MuJoCo, Euler-Lagrange Dynamics, State-Space Modeling, LQR, PID, Control Theory, Python]
 heroMedia:
   type: image
-  src: project-assets/inverted-pendulum/double_iso.png
-  alt: Double inverted pendulum model in MuJoCo
-  label: Double-link MuJoCo plant
-  caption: The double-link configuration used for multi-variable state-feedback controller validation.
+  src: project-assets/inverted-pendulum/triple_iso.png
+  alt: Triple inverted pendulum cart model in MuJoCo
+  label: Triple-link MuJoCo plant
+  caption: The triple-link configuration defining the active research frontier for multi-variable nonlinear control.
 sections:
   - title: Research Objective & Problem Formulation
     description: Derive, linearize, and stabilize progressively coupled inverted pendulum systems as a benchmark for comparing classical, optimal, and learning-based control strategies.
@@ -35,10 +35,10 @@ sections:
         label: Single-link plant
         caption: Baseline 2-state plant for analytical-to-simulation comparison.
       - type: image
-        src: project-assets/inverted-pendulum/triple_iso.png
-        alt: Triple inverted pendulum cart model
-        label: Triple-link plant
-        caption: Six coupled state variables — the most demanding configuration in the current study.
+        src: project-assets/inverted-pendulum/double_iso.png
+        alt: Double inverted pendulum cart model
+        label: Double-link plant
+        caption: Four coupled state variables used for multi-variable state-feedback controller validation.
   - title: Controller Synthesis & Simulation Validation
     description: PID and LQR controllers stabilize the single- and double-link configurations; the triple-link plant defines the current research frontier.
     body:

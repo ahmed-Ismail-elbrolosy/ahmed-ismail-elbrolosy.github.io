@@ -17,6 +17,7 @@ export const personal = {
   location: 'Alexandria, Egypt',
   phone: '+20 155 200 5007',
   email: 'ahmedismailahmed2004@gmail.com',
+  academicEmail: 'ahmed.elbrolosy@ejust.edu.eg',
   linkedin: 'https://linkedin.com/in/ahmed-ismail-elbrolosy',
   github: 'https://github.com/ahmed-Ismail-elbrolosy',
 };
@@ -24,11 +25,11 @@ export const personal = {
 export const education = {
   institution: 'Egypt Japan University of Science and Technology (EJUST)',
   location: 'Burj El-Arab, Alexandria',
-  degree: 'Bachelor of Engineering in Mechatronics',
+  degree: 'Bachelor of Engineering in Mechatronics and Robotics',
   gpa: '3.54 / 4.0',
-  period: 'Oct. 2022 — May 2027',
+  period: 'Oct. 2022 — Feb. 2027',
   year: '4th year',
-  expectedGraduation: 'May 2027',
+  expectedGraduation: 'Feb. 2027',
 };
 
 export const experiences: Experience[] = [
@@ -143,6 +144,8 @@ export const experiences: Experience[] = [
       'Integrated MLflow for experiment tracking and model versioning.',
     ],
     tags: ['SQL', 'Azure Databricks', 'Apache Spark', 'MLflow'],
+    logo: '/images/companies/depi.webp',
+    logoAlt: 'Digital Egypt Pioneers Initiative (DEPI)',
   },
   {
     org: 'Orascom Construction',
@@ -151,10 +154,10 @@ export const experiences: Experience[] = [
     period: 'Jul. 2024',
     type: 'Internship',
     bullets: [
-      'Completed a cross-functional Monorail Project rotation covering electrical, mechanical, project management, and safety departments.',
-      'Participated in mechanical and electrical construction training under active site conditions.',
+      'Completed a cross-functional rotation on the Cairo Monorail Mega Project covering electrical power systems, mechanical infrastructure, project management, and site safety.',
+      'Participated in mechanical and electrical installation inspections under active construction conditions for urban transit infrastructure.',
     ],
-    tags: ['Mechanical', 'Electrical', 'HVAC', 'MEP', 'Infrastructure'],
+    tags: ['Mechanical', 'Electrical', 'Monorail Transit', 'MEP', 'Infrastructure'],
     logo: '/images/companies/orascom.webp',
     logoAlt: 'Orascom Construction Industries',
   },
