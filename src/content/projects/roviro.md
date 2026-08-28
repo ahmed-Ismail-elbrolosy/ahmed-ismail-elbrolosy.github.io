@@ -60,15 +60,21 @@ sections:
       - "Due to workstation resource constraints during concurrent physics and dense visual simulation (20m 39s real time yielded ~147s simulation time), live SLAM was decoupled by capturing raw uncompressed stereo rosbags."
       - "Offline mapping leveraged RTAB-Map with Semi-Global Matching Hierarchical (SGM-HH) across 256 disparities without compression, maximizing underwater feature density and depth map precision."
       - "The recording was replayed at 0.15× rate (~3h total processing) into Rerun, visualizing synchronized 3D dense point clouds, 6-DOF vehicle trajectories, raw stereo feeds, and attitude/heave telemetry traces."
+      - "In raw visual output, simulated water volume boundaries created planar depth artifacts; segmenting and filtering water-layer returns isolated the clean, high-fidelity 3D structural geometry of the seabed and submerged aircraft."
       - "With Phase 1 (Perception & VSLAM pipeline verification) complete, project focus shifts to Phase 2: custom state-space control allocation and disturbance-rejection controller synthesis for Kami's asymmetric thruster geometry."
     media:
       - type: video
         src: project-assets/roviro/vslam-rerun-visualization.mp4
         label: VSLAM & Rerun 3D reconstruction pipeline
-        caption: Simulation recording and offline RTAB-Map stereo mapping with synchronized telemetry visualization in Rerun.
+        caption: Synchronized 3D point cloud generation, 6-DOF vehicle trajectory tracking, and live telemetry replay in Rerun.
         poster: project-assets/roviro/vslam-rerun-poster.jpg
         ratio: landscape
         silent: true
+      - type: image
+        src: project-assets/roviro/pointcloud-without-water.jpg
+        alt: Dense 3D point cloud reconstruction of the underwater environment with water surface reflection artifacts removed
+        label: Segmented 3D point cloud
+        caption: Dense point cloud reconstruction of the seabed and wreckage geometry, filtering out water-layer visual artifacts to isolate structural scene features.
   - title: Current Results & Known Limitations
     description: Resource constraints produced a reproducible offline pipeline. No control-accuracy or reconstruction-error claim is quantitatively supported yet.
     body:
