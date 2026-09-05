@@ -16,8 +16,24 @@ const { media, label, index } = Astro.props;
   {!media ? (
     <MediaPlaceholder label="PROJECT MEDIA PENDING" ratio="standard" index={index} />
   ) : media.type === 'image' ? (
-    <div class="archive-media-frame">
+    <div
+      class="archive-media-frame"
+      data-lightbox-trigger
+      data-lightbox-src={assetPath(media.src)}
+      data-lightbox-alt={media.alt ?? label}
+      data-lightbox-label={label}
+      data-lightbox-caption={media.caption}
+      role="button"
+      tabindex="0"
+      aria-label={`Enlarge image: ${label}`}
+    >
       <img src={assetPath(media.src)} alt={media.alt} width="800" height="600" loading="lazy" />
+      <span class="media-zoom-badge" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M1.5 1a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V2h3.5a.5.5 0 0 0 0-1h-4ZM10 1a.5.5 0 0 0 0 1h3.5v3.5a.5.5 0 0 0 1 0v-4a.5.5 0 0 0-.5-.5h-4ZM1 10.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1H2v-3.5a.5.5 0 0 0-.5-.5Zm14 0a.5.5 0 0 0-.5.5V14h-3.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5Z"/>
+        </svg>
+        <span>EXPAND</span>
+      </span>
     </div>
   ) : (
     <div class="archive-media-frame archive-video-frame">

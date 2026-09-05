@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ImageLightbox from '../components/ImageLightbox.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -31,5 +32,6 @@ const pageTitle = title === 'Home' ? 'Ahmed Elbrolosy — Robotics Engineer' : `
       <slot />
     </main>
     {showFooter && <Footer />}
+    <ImageLightbox />
   </body>
 </html>

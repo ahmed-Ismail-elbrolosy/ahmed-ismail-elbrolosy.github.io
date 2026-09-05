@@ -1,0 +1,294 @@
+---
+// Component: ImageLightbox.astro
+// Global image popup dialog matching the portfolio's engineering journal aesthetic.
+---
+
+<div
+  id="image-lightbox"
+  class="image-lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image inspection viewer"
+  aria-hidden="true"
+  hidden
+>
+  <div class="lightbox-backdrop" data-lightbox-close tabindex="-1"></div>
+
+  <div class="lightbox-dialog" role="document">
+    <header class="lightbox-header">
+      <div class="lightbox-meta">
+        <span class="lightbox-counter" data-lightbox-counter>-- / --</span>
+        <span class="lightbox-label-top" data-lightbox-label-top></span>
+      </div>
+
+      <div class="lightbox-actions">
+        <button
+          type="button"
+          class="lightbox-btn lightbox-nav-btn"
+          data-lightbox-prev
+          aria-label="Previous image"
+          title="Previous image (Left Arrow)"
+        >
+          <span aria-hidden="true">←</span> PREV
+        </button>
+
+        <button
+          type="button"
+          class="lightbox-btn lightbox-nav-btn"
+          data-lightbox-next
+          aria-label="Next image"
+          title="Next image (Right Arrow)"
+        >
+          NEXT <span aria-hidden="true">→</span>
+        </button>
+
+        <button
+          type="button"
+          class="lightbox-btn lightbox-close-btn"
+          data-lightbox-close
+          aria-label="Close image popup"
+          title="Close (Escape)"
+        >
+          <span aria-hidden="true">✕</span> CLOSE
+        </button>
+      </div>
+    </header>
+
+    <div class="lightbox-stage">
+      <button
+        type="button"
+        class="lightbox-arrow-btn side-prev"
+        data-lightbox-prev
+        aria-label="Previous image"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="lightbox-figure">
+        <img class="lightbox-image" src="" alt="" data-lightbox-img />
+      </div>
+
+      <button
+        type="button"
+        class="lightbox-arrow-btn side-next"
+        data-lightbox-next
+        aria-label="Next image"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <footer class="lightbox-footer">
+      <div class="lightbox-caption-group">
+        <strong class="lightbox-caption-title" data-lightbox-caption-title></strong>
+        <p class="lightbox-caption-desc" data-lightbox-caption-desc></p>
+      </div>
+
+      <a class="lightbox-project-link" data-lightbox-project-link href="#" hidden>
+        View Case Study <span aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </div>
+</div>
+
+<script>
+  interface LightboxItem {
+    src: string;
+    alt: string;
+    label: string;
+    caption: string;
+    projectUrl?: string;
+    trigger: HTMLElement;
+  }
+
+  function initLightbox() {
+    const lightbox = document.getElementById('image-lightbox');
+    if (!lightbox || lightbox.dataset.initialized === 'true') return;
+    lightbox.dataset.initialized = 'true';
+
+    const imgEl = lightbox.querySelector<HTMLImageElement>('[data-lightbox-img]');
+    const counterEl = lightbox.querySelector<HTMLElement>('[data-lightbox-counter]');
+    const topLabelEl = lightbox.querySelector<HTMLElement>('[data-lightbox-label-top]');
+    const titleEl = lightbox.querySelector<HTMLElement>('[data-lightbox-caption-title]');
+    const descEl = lightbox.querySelector<HTMLElement>('[data-lightbox-caption-desc]');
+    const projectLinkEl = lightbox.querySelector<HTMLAnchorElement>('[data-lightbox-project-link]');
+    const closeButtons = lightbox.querySelectorAll<HTMLElement>('[data-lightbox-close]');
+    const prevButtons = lightbox.querySelectorAll<HTMLElement>('[data-lightbox-prev]');
+    const nextButtons = lightbox.querySelectorAll<HTMLElement>('[data-lightbox-next]');
+
+    let items: LightboxItem[] = [];
+    let currentIndex = 0;
+    let lastActiveElement: HTMLElement | null = null;
+
+    function refreshTriggers() {
+      const triggers = Array.from(document.querySelectorAll<HTMLElement>('[data-lightbox-trigger]'));
+      items = triggers.map((trigger) => {
+        const img = trigger.querySelector<HTMLImageElement>('img');
+        const src = trigger.dataset.lightboxSrc || img?.currentSrc || img?.src || '';
+        const alt = trigger.dataset.lightboxAlt || img?.alt || '';
+        const label = trigger.dataset.lightboxLabel || '';
+        const caption = trigger.dataset.lightboxCaption || '';
+        const projectUrl = trigger.dataset.lightboxProjectUrl || '';
+
+        return {
+          src,
+          alt,
+          label,
+          caption,
+          projectUrl,
+          trigger,
+        };
+      });
+
+      triggers.forEach((trigger, idx) => {
+        if (!trigger.dataset.lightboxBound) {
+          trigger.dataset.lightboxBound = 'true';
+          trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openLightbox(idx);
+          });
+
+          if (trigger.getAttribute('role') === 'button' || trigger.tagName !== 'BUTTON') {
+            trigger.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                e.stopPropagation();
+                openLightbox(idx);
+              }
+            });
+          }
+        }
+      });
+    }
+
+    function displayItem(index: number) {
+      if (!items.length) return;
+      currentIndex = ((index % items.length) + items.length) % items.length;
+      const item = items[currentIndex];
+
+      if (imgEl) {
+        imgEl.src = item.src;
+        imgEl.alt = item.alt;
+      }
+
+      if (counterEl) {
+        counterEl.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+      }
+
+      if (topLabelEl) {
+        topLabelEl.textContent = item.label ? `// ${item.label}` : '';
+      }
+
+      if (titleEl) {
+        titleEl.textContent = item.label;
+        titleEl.style.display = item.label ? 'block' : 'none';
+      }
+
+      if (descEl) {
+        descEl.textContent = item.caption;
+        descEl.style.display = item.caption ? 'block' : 'none';
+      }
+
+      if (projectLinkEl) {
+        if (item.projectUrl) {
+          projectLinkEl.href = item.projectUrl;
+          projectLinkEl.removeAttribute('hidden');
+        } else {
+          projectLinkEl.setAttribute('hidden', '');
+        }
+      }
+
+      const hasMultiple = items.length > 1;
+      [...prevButtons, ...nextButtons].forEach((btn) => {
+        btn.style.display = hasMultiple ? '' : 'none';
+      });
+    }
+
+    function openLightbox(index: number) {
+      lastActiveElement = document.activeElement as HTMLElement;
+      refreshTriggers();
+      displayItem(index);
+
+      lightbox.removeAttribute('hidden');
+      lightbox.setAttribute('aria-hidden', 'false');
+      lightbox.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      const closeBtn = lightbox.querySelector<HTMLElement>('.lightbox-close-btn');
+      closeBtn?.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.setAttribute('hidden', '');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightbox.classList.remove('is-open');
+      document.body.style.overflow = '';
+
+      if (imgEl) {
+        imgEl.src = '';
+      }
+
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
+    }
+
+    function prevItem() {
+      displayItem(currentIndex - 1);
+    }
+
+    function nextItem() {
+      displayItem(currentIndex + 1);
+    }
+
+    closeButtons.forEach((btn) => btn.addEventListener('click', closeLightbox));
+    prevButtons.forEach((btn) => btn.addEventListener('click', (e) => { e.stopPropagation(); prevItem(); }));
+    nextButtons.forEach((btn) => btn.addEventListener('click', (e) => { e.stopPropagation(); nextItem(); }));
+
+    window.addEventListener('keydown', (e) => {
+      if (lightbox.hasAttribute('hidden')) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevItem();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextItem();
+      } else if (e.key === 'Tab') {
+        const focusable = Array.from(
+          lightbox.querySelectorAll<HTMLElement>(
+            'button:not([style*="display: none"]), [href]:not([hidden]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => el.offsetParent !== null);
+
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    refreshTriggers();
+  }
+
+  document.addEventListener('DOMContentLoaded', initLightbox);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initLightbox();
+  }
+</script>
+
