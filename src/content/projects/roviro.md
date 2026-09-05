@@ -68,7 +68,7 @@ sections:
         label: VSLAM & Rerun 3D reconstruction pipeline
         caption: Synchronized 3D point cloud generation, 6-DOF vehicle trajectory tracking, and live telemetry replay in Rerun.
         poster: project-assets/roviro/vslam-rerun-poster.jpg
-        ratio: landscape
+        ratio: wide
         silent: true
       - type: image
         src: project-assets/roviro/pointcloud-without-water.jpg
